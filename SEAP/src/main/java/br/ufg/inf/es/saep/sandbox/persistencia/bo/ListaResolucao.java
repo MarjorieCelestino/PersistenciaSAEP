@@ -136,7 +136,18 @@ public class ListaResolucao implements Serializable, ResolucaoRepository {
      */
     @Override
     public List<String> resolucoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Cria lista de identificadores de resoluções
+        List resolucoesIds = new ArrayList();
+        String idResolucao;
+        //percorre a lista de resoluções
+        for(Iterator i = listaResolucao.iterator(); i.hasNext();){
+            Resolucao resolucaoAtual = (Resolucao) i.next();
+            //salva identificadores de cada resolução armazenada
+            idResolucao = resolucaoAtual.getId();
+            resolucoesIds.add(idResolucao);
+        }
+        //restorna lista de identificadores
+        return resolucoesIds;
     }
     
     /**

@@ -7,6 +7,7 @@ package br.ufg.inf.es.saep.sandbox.persistencia.bo;
 
 import br.ufg.inf.es.saep.sandbox.dominio.Avaliavel;
 import br.ufg.inf.es.saep.sandbox.dominio.IdentificadorExistente;
+import br.ufg.inf.es.saep.sandbox.dominio.IdentificadorDesconhecido;
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
 import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.ParecerRepository;
@@ -39,22 +40,43 @@ public class ListaParecer implements Serializable, ParecerRepository {
      * pareder.
      */
     @Override
-    public void adicionaNota(String string, Nota nota) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void adicionaNota(String id, Nota nota) {
+        //percorre listaParecer
+        for(Iterator i = listaParecer.iterator(); i.hasNext();){
+            Parecer parecerAtual = (Parecer) i.next();
+            //compara id do parecer com o fornecido
+            if(parecerAtual.getId().equals(id)){
+                //adiciona nota a lista de notas do parecer identificado
+                parecerAtual.getNotas().add(nota);
+            }else{
+                throw new IdentificadorDesconhecido("Nenhum parecer existente com este identificador.");
+            }
+        }
     }
     
     /**
+     * TO-DO
      * Remove a nota cujo item {@link Avaliavel} original é
      * fornedido.
      *
      * @param id O identificador único do parecer.
-     * @param original Instância de {@link Avaliavel} que participa
-     *                 da {@link Nota} a ser removida como origem.
+     * @param original Instância de {@link Avaliavel} que participa 
+     * da {@link Nota} a ser removida como origem.
      *
      */
     @Override
-    public void removeNota(String string, Avaliavel avlvl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removeNota(String id, Avaliavel original) {
+        //percorre listaParecer
+        for(Iterator i = listaParecer.iterator(); i.hasNext();){
+            Parecer parecerAtual = (Parecer) i.next();
+            //compara id do parecer com o fornecido
+            if(parecerAtual.getId().equals(id)){
+                //parecerAtual.getNotas().remove();
+                //original.get(id);
+            }else{
+                throw new IdentificadorDesconhecido("Nenhum parecer existente com este identificador.");
+            }
+        }
     }
     
     /**
@@ -82,7 +104,7 @@ public class ListaParecer implements Serializable, ParecerRepository {
         for(Iterator i = listaParecer.iterator(); i.hasNext();){
             Parecer parecerAtual = (Parecer) i.next();
             //compara id do parecer à ser adicionado com os já armazenados na listaParecer
-            if(parecer.getId() == null ? parecerAtual.getId() == null : parecer.getId().equals(parecerAtual.getId())){
+            if(parecer.getId().equals(parecerAtual.getId())){
                 throw new IdentificadorExistente("Identificador referente a outro parecer já armazenado.");
             //adiciona parecer a listaParecer
             }else{
@@ -107,12 +129,29 @@ public class ListaParecer implements Serializable, ParecerRepository {
      * @throws IdentificadorDesconhecido Caso o identificador
      * fornecido não identifique um parecer.
      *
-     * @param parecer O identificador único do parecer.
+     * @param parecerId O identificador único do parecer.
      * @param fundamentacao Novo texto da fundamentação do parecer.
      */
     @Override
-    public void atualizaFundamentacao(String string, String string1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void atualizaFundamentacao(String parecerId, String fundamentacao) {
+        //percorre listaParecer
+        for(Iterator i = listaParecer.iterator(); i.hasNext();){
+            Parecer parecerAtual = (Parecer) i.next();
+            //compara id do parecer com o fornecido
+            if(parecerAtual.getId().equals(parecerId)){
+                //adiciona nota a lista de notas do parecer identificado
+                parecerAtual.getFundamentacao();
+                //cria novo parecer com fundamentacao atualizada
+                Parecer novoParecer = new Parecer(parecerAtual.getId(), parecerAtual.getResolucao(), 
+                        parecerAtual.getRadocs(), parecerAtual.getPontuacoes(), fundamentacao, parecerAtual.getNotas());
+                //apaga parecerAtual
+                removeParecer(parecerId);
+                //armazena novo parecer
+                persisteParecer(novoParecer);
+            }else{
+                throw new IdentificadorDesconhecido("Nenhum parecer existente com este identificador.");
+            }
+        }
     }
     
     /**
@@ -129,7 +168,7 @@ public class ListaParecer implements Serializable, ParecerRepository {
         for(Iterator i = listaParecer.iterator(); i.hasNext();){
             Parecer parecerAtual = (Parecer) i.next();
             //identifica parecer por id e retorna parecerAtual
-            if(parecerAtual.getId() == null ? id == null : parecerAtual.getId().equals(id)){
+            if(parecerAtual.getId().equals(id)){
                 return parecerAtual;
             }
         }
@@ -159,18 +198,19 @@ public class ListaParecer implements Serializable, ParecerRepository {
     }
     
     /**
+     * TO-DO
      * Recupera o RADOC identificado pelo argumento.
      *
-     * @param identificador O identificador único do
-     *                      RADOC.
+     * @param identificador O identificador único do RADOC.
      *
      * @return O {@code Radoc} correspondente ao
      * identificador fornecido.
      */
     @Override
-    public Radoc radocById(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Radoc radocById(String identificador) {
+       return null; 
     }
+    
     
     /**
      * Conjunto de relatos de atividades e produtos
