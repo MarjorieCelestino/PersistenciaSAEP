@@ -1,4 +1,4 @@
-# Persistencia SEAP
+# Persistência SEAP
 
 Implementação da proposta de estratégia de persistência referente ao Estudo de Caso SEAP.
 
