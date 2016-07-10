@@ -5,6 +5,8 @@
  */
 package br.ufg.inf.es.saep.sandbox.persistencia;
 
+import java.util.*;
+
 /**
  *Classe com o método main() - Utiliza o padrão de projeto Factory para criar objetos necessários
  *para o Prevayler funcionar, indicando que as classes ListaParecer e ListaResolucao são os 

@@ -22,12 +22,13 @@
  */
 package br.ufg.inf.es.saep.sandbox.persistencia.bo;
 
+import br.ufg.inf.es.saep.sandbox.dominio.CampoExigidoNaoFornecido;
+import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.Resolucao;
 import br.ufg.inf.es.saep.sandbox.dominio.ResolucaoRepository;
 import br.ufg.inf.es.saep.sandbox.dominio.Tipo;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * bo: business object
@@ -46,8 +47,7 @@ public class ListaResolucao implements Serializable, ResolucaoRepository {
      * Recupera a instância de {@code Resolucao} correspondente
      * ao identificador.
      *
-     * @param id O identificador único da resolução a
-     *                      ser recuperada.
+     * @param id O identificador único da resolução a ser recuperada.
      *
      * @return {@code Resolucao} identificada por {@code id}.
      * O retorno {@code null} indica que não existe resolução
@@ -56,8 +56,16 @@ public class ListaResolucao implements Serializable, ResolucaoRepository {
      * @see #persiste(Resolucao)
      */
     @Override
-    public Resolucao byId(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Resolucao byId(String id) {
+        //percorre listaResolucao
+        for(Iterator i = listaResolucao.iterator(); i.hasNext();){
+            Resolucao resolucaoAtual = (Resolucao) i.next();
+            //identifica resolucao por id e retorna resolucaoAtual
+            if(resolucaoAtual.getId().equals(id)){
+                return resolucaoAtual;
+            }
+        }
+        return null;
     }
     
     /**
@@ -79,26 +87,46 @@ public class ListaResolucao implements Serializable, ResolucaoRepository {
      * @see #remove(String)
      */
     @Override
-    public String persiste(Resolucao rslc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String persiste(Resolucao resolucao) {
+        //percorre listaResolucao
+        for(Iterator i = listaResolucao.iterator(); i.hasNext();){
+            Resolucao resolucaoAtual = (Resolucao) i.next();
+            //compara id da resolução à ser adicionada com as já armazenadas na listaResolucao
+            if(resolucao.getId().equals(resolucaoAtual.getId())){
+                //caso não encontre o id da resolucao
+                throw new CampoExigidoNaoFornecido("Identificador nao fornecido.");
+            //adiciona parecer a listaParecer e retorna id 
+            }else{
+                this.listaResolucao.add(resolucao);
+                return resolucao.getId();
+            }
+        }
+        return null;
     }
     
      /**
-     * Remove a resolução com o identificador
-     * fornecido.
+     * Remove a resolução com o identificado fornecido.
      *
      * @see #persiste(Resolucao)
      *
-     * @param identificador O identificador único da
-     *                      resolução a ser removida.
+     * @param identificador O identificador único da resolução a ser removida.
      *
      * @return O valor {@code true} se a operação foi
      * executada de forma satisfatória e {@code false},
      * caso contrário.
      */
     @Override
-    public boolean remove(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean remove(String identificador) {
+        //percorre listaResolucao
+        for(Iterator i = listaResolucao.iterator(); i.hasNext();){
+            Resolucao resolucaoAtual = (Resolucao) i.next();
+            //remove resolucao e retorna true  
+            if(resolucaoAtual.getId().equals(identificador)){
+                i.remove();
+                return true;
+            }
+        }
+        return false;
     }
     
     /**

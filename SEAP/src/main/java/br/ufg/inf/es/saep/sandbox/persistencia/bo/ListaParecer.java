@@ -74,7 +74,7 @@ public class ListaParecer implements Serializable, ParecerRepository {
             Parecer parecerAtual = (Parecer) i.next();
             //compara id do parecer à ser adicionado com os já armazenados na listaParecer
             if(parecer.getId() == null ? parecerAtual.getId() == null : parecer.getId().equals(parecerAtual.getId())){
-                throw new IdentificadorExistente("Identificador refere-se a outro parecer já armazenado.");
+                throw new IdentificadorExistente("Identificador referente a outro parecer já armazenado.");
             //adiciona parecer a listaParecer
             }else this.listaParecer.add(parecer);
         }
