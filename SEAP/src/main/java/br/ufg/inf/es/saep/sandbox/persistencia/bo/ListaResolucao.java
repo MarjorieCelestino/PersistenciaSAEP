@@ -23,7 +23,6 @@
 package br.ufg.inf.es.saep.sandbox.persistencia.bo;
 
 import br.ufg.inf.es.saep.sandbox.dominio.CampoExigidoNaoFornecido;
-import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.Resolucao;
 import br.ufg.inf.es.saep.sandbox.dominio.ResolucaoRepository;
 import br.ufg.inf.es.saep.sandbox.dominio.Tipo;

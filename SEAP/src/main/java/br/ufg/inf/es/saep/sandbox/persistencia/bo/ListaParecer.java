@@ -57,7 +57,16 @@ public class ListaParecer implements Serializable, ParecerRepository {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-     /**
+    /**
+     * Método para adicionar um novo parecer e persistir o mesmo.
+     * @return novoParecer
+     */
+    public Parecer addParecer(){
+        Parecer novoParecer = (ParecerSeriavel) new Parecer();
+        persisteParecer(novoParecer);
+        return novoParecer;
+    } 
+    /**
      * Acrescenta o parecer ao repositório.
      *
      * @throws IdentificadorExistente Caso o
@@ -76,7 +85,10 @@ public class ListaParecer implements Serializable, ParecerRepository {
             if(parecer.getId() == null ? parecerAtual.getId() == null : parecer.getId().equals(parecerAtual.getId())){
                 throw new IdentificadorExistente("Identificador referente a outro parecer já armazenado.");
             //adiciona parecer a listaParecer
-            }else this.listaParecer.add(parecer);
+            }else{
+                this.listaParecer.add(parecer);
+                System.out.println("Parecer adicionado.");
+            }
         }
     }
     
@@ -134,8 +146,16 @@ public class ListaParecer implements Serializable, ParecerRepository {
      * @param id O identificador único do parecer.
      */
     @Override
-    public void removeParecer(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removeParecer(String id) {
+        //percorre listaParecer
+        for(Iterator i = listaParecer.iterator(); i.hasNext();){
+            Parecer parecerAtual = (Parecer) i.next();
+            //remove parecer  
+            if(parecerAtual.getId().equals(id)){
+                i.remove();
+                System.out.println("Parecer removido.");
+            }
+        }
     }
     
     /**
