@@ -5,13 +5,13 @@
  */
 package br.ufg.inf.es.saep.sandbox.persistencia.transaction;
 
+import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
-import br.ufg.inf.es.saep.sandbox.persistencia.bo.ParecerSeriavel;
 import java.util.Date;
 import org.prevayler.TransactionWithQuery;
 
 /**
- *
+ * Classe transaction para atualização da fundamentação em um business object parecer
  * @author Marjorie
  */
 public class ParecerChangeFundamentacaoTransaction implements TransactionWithQuery{
@@ -25,8 +25,7 @@ public class ParecerChangeFundamentacaoTransaction implements TransactionWithQue
 
     @Override
     public Object executeAndQuery(Object prevalentSystem, Date executionTime) throws Exception {
-        ParecerSeriavel parecerAlterado = (ParecerSeriavel) ((ListaParecer)prevalentSystem).byId(id);
-        parecerAlterado.setFundamentacao(fundamentacao);
+        Parecer parecerAlterado = ((ListaParecer)prevalentSystem).novaFundamentacao(id, fundamentacao);
         return parecerAlterado;
     }
     

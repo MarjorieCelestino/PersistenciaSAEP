@@ -6,9 +6,9 @@
 package br.ufg.inf.es.saep.sandbox.persistencia.transaction;
 
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
+import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
 import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
-import br.ufg.inf.es.saep.sandbox.persistencia.bo.ParecerSeriavel;
 import java.util.Date;
 import java.util.List;
 import org.prevayler.TransactionWithQuery;
@@ -37,12 +37,7 @@ public class ParecerCreateTransaction implements TransactionWithQuery{
     }
     @Override
     public Object executeAndQuery(Object prevalentSystem, Date executionTime) throws Exception {
-        ParecerSeriavel novoParecer = (ParecerSeriavel) ((ListaParecer)prevalentSystem).addParecer();
-        novoParecer.setId(id);
-        novoParecer.setResolucao(resolucao);
-        novoParecer.setPontuacao(pontuacoes);
-        novoParecer.setFundamentacao(fundamentacao);
-        novoParecer.setNota(notas);
+        Parecer novoParecer = ((ListaParecer)prevalentSystem).addParecer(id, resolucao, radocs, pontuacoes, fundamentacao, notas);
         return novoParecer;
     }
     
