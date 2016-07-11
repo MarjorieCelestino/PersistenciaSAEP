@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import org.prevayler.Prevayler;
 
 /**
- * Thread para snapshots de 3 em 3 horas
+ * Thread para snapshots de 1 em 1 hora
  * Evita a re-execução dos logs na inicialização do sisema
  * @author marjorie.goncalves
  */
@@ -24,7 +24,7 @@ public class SnapshotTimer extends Thread {
   
         while (true) {  
             try {  
-                Thread.sleep(1000 * 60 * 60 * 3); //3 horas  
+                Thread.sleep(1000 * 60 * 60); //1 hora  
                 prevayler.takeSnapshot();  
                 System.out.println("Snapshot disparado as " + new java.util.Date() + "...");      
             } catch (InterruptedException e) {  

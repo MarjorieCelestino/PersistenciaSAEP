@@ -19,8 +19,8 @@ import java.util.*;
 public class ListaParecer implements Serializable, ParecerRepository {
 
     //lista para armazenamento dos objetos Parecer
-    private final List listaParecer = new ArrayList();
-    private final List listaRadoc = new ArrayList();
+    private List<Parecer> listaParecer = new ArrayList();
+    private List<Radoc> listaRadoc = new ArrayList();
 
     public ListaParecer() {
         super();
@@ -91,6 +91,9 @@ public class ListaParecer implements Serializable, ParecerRepository {
                 //adiciona parecer a listaParecer
                 this.listaParecer.add(parecer);
                 System.out.println("Parecer armazenado.");
+                //para teste
+                int tamanho = listaParecer.size();
+                System.out.println(tamanho);
             }
         }
     }
@@ -229,6 +232,19 @@ public class ListaParecer implements Serializable, ParecerRepository {
                         System.out.println("Radoc removido.");
                     }
                 }
+            }
+        }
+    }
+    //PARA TESTE
+    public void imprimeParecer(Parecer parecer){
+        for (Iterator i = listaParecer.iterator(); i.hasNext();) {
+            Parecer parecerAtual = (Parecer) i.next();
+            //compara id do parecer à ser adicionado com os já armazenados na listaParecer
+            if (parecer.getId().equals(parecerAtual.getId())) {
+                System.out.println(parecer);
+                System.out.println(listaParecer.size());
+            } else {
+                System.out.println("Nenhum parecer encontrado");
             }
         }
     }
