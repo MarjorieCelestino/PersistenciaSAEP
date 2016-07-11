@@ -8,7 +8,7 @@ import java.util.Date;
 import org.prevayler.TransactionWithQuery;
 
 /**
- *Transaction criação/persistencia de radoc
+ *Transaction criação/persistencia de radoc em um business object parecer
  * 
  * @author Marjorie
  */
@@ -25,8 +25,8 @@ public class RadocCreateTransaction implements TransactionWithQuery {
     public Object executeAndQuery(Object prevalentSystem, Date executionTime) throws Exception {
         Parecer novoParecer = ((ListaParecer) prevalentSystem).byId(idParecer);
         Radoc novoRadoc = ((ListaParecer) prevalentSystem).radocById(idRadoc);
-        novoParecer.getRadocs().add(idRadoc);
         ((ListaParecer) prevalentSystem).persisteRadoc(novoRadoc);
+        novoParecer.getRadocs().add(idRadoc);
 
         return novoRadoc;
     }
