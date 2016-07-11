@@ -36,7 +36,6 @@ public class ListaParecer implements Serializable, ParecerRepository {
      *
      * @throws IdentificadorDesconhecido Caso o identificador fornecido não
      * identifique um parecer existente.
-     *
      * @param id O identificador único do parecer.
      * @param nota A alteração a ser acrescentada ao pareder.
      */
@@ -104,7 +103,6 @@ public class ListaParecer implements Serializable, ParecerRepository {
      * @throws IdentificadorExistente Caso o identificador seja empregado por
      * parecer existente (já persistido).
      * @param parecer O parecer a ser persistido.
-     *
      */
     @Override
     public void persisteParecer(Parecer parecer) {
@@ -128,7 +126,6 @@ public class ListaParecer implements Serializable, ParecerRepository {
      * @return novoParecer (com fundamentação alterada)
      * @throws IdentificadorDesconhecido Caso o identificador fornecido não
      * identifique um parecer.
-     *
      * @param parecerId O identificador único do parecer.
      * @param fundamentacao Novo texto da fundamentação do parecer.
      */
@@ -207,6 +204,7 @@ public class ListaParecer implements Serializable, ParecerRepository {
 
     /**
      * Recupera o RADOC identificado pelo argumento.
+     *
      * @param identificador O identificador único do RADOC.
      * @return O {@code Radoc} correspondente ao identificador fornecido.
      */
@@ -224,9 +222,9 @@ public class ListaParecer implements Serializable, ParecerRepository {
     }
 
     /**
-     * Armazena radoc
-     * Conjunto de relatos de atividades e produtos associados a um
-     * docente.
+     * Armazena radoc Conjunto de relatos de atividades e produtos associados a
+     * um docente.
+     *
      * @throws IdentificadorExistente Caso o identificador do objeto a ser
      * persistido seja empregado por RADOC existente.
      * @param radoc O conjunto de relatos a ser persistido.
@@ -251,20 +249,30 @@ public class ListaParecer implements Serializable, ParecerRepository {
     }
 
     /**
-     * TO- DO Remove o RADOC.
-     *
-     * <p>
-     * Após essa operação o RADOC correspondente não estará disponível para
-     * consulta.
-     *
-     * <p>
-     * Não é permitida a remoção de um RADOC para o qual há pelo menos um
-     * parecer referenciando-o.
+     * Remove o RADOC.
      *
      * @param identificador O identificador do RADOC.
      */
     @Override
     public void removeRadoc(String identificador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //percorre listaRadoc
+        for (Iterator i = listaRadoc.iterator(); i.hasNext();) {
+            Radoc radocAtual = (Radoc) i.next();
+            //compara id do radoc à ser adicionado com os já armazenados na listaRadoc
+            if (radocAtual.getId().equals(identificador)) {
+                //Não é permitida a remoção de um RADOC para o qual há pelo menos um parecer referenciando-o. 
+                // Percorre listaParecer e verifica se o radocAtual é referenciado por algum parecer.
+                for (Iterator j = listaParecer.iterator(); j.hasNext();) {
+                    Parecer parecerAtual = (Parecer) j.next();
+                    if (parecerAtual.getRadocs().equals(radocAtual)) {
+                        System.out.println("Radoc relacionado a um parecer.");
+                    } else {
+                        //deleta radocAtual
+                        this.listaRadoc.remove(radocAtual);
+                        System.out.println("Radoc removido.");
+                    }
+                }
+            }
+        }
     }
 }
