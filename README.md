@@ -1,6 +1,6 @@
 # Persistência SAEP
 
-Implementação da proposta de estratégia de persistência referente ao Estudo de Caso SEAP.
+Implementação da proposta de estratégia de persistência referente ao Estudo de Caso SAEP.
 
 Descrição da proposta: https://goo.gl/qC5sDB
 
