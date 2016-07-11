@@ -37,7 +37,6 @@ public class ListaParecer implements Serializable, ParecerRepository {
      * identifique um parecer existente.
      *
      * @param id O identificador único do parecer.
-     *
      * @param nota A alteração a ser acrescentada ao pareder.
      */
     @Override
@@ -103,7 +102,6 @@ public class ListaParecer implements Serializable, ParecerRepository {
      *
      * @throws IdentificadorExistente Caso o identificador seja empregado por
      * parecer existente (já persistido).
-     *
      * @param parecer O parecer a ser persistido.
      *
      */
@@ -115,10 +113,10 @@ public class ListaParecer implements Serializable, ParecerRepository {
             //compara id do parecer à ser adicionado com os já armazenados na listaParecer
             if (parecer.getId().equals(parecerAtual.getId())) {
                 throw new IdentificadorExistente("Identificador referente a outro parecer já armazenado.");
-                //adiciona parecer a listaParecer
             } else {
+                //adiciona parecer a listaParecer
                 this.listaParecer.add(parecer);
-                System.out.println("Parecer adicionado.");
+                System.out.println("Parecer armazenado.");
             }
         }
     }
@@ -126,16 +124,7 @@ public class ListaParecer implements Serializable, ParecerRepository {
     /**
      * Altera a fundamentação do parecer.
      *
-     * <p>
-     * Fundamentação é o texto propriamente dito do parecer. Não confunda com as
-     * alterações de valores (dados de relatos ou de pontuações).
-     *
-     * <p>
-     * Após a chamada a esse método, o parecer alterado pode ser recuperado pelo
-     * método {@link #byId(String)}. Observe que uma instância disponível antes
-     * dessa chamada torna-se "inválida".
-     *
-     * @return 
+     * @return novoParecer (com fundamentação alterada)
      * @throws IdentificadorDesconhecido Caso o identificador fornecido não
      * identifique um parecer.
      *
@@ -159,6 +148,12 @@ public class ListaParecer implements Serializable, ParecerRepository {
         return novoParecer;
     }
 
+    /**
+     * Altera fundamentação, remove e persiste parecer.
+     *
+     * @param parecerId
+     * @param fundamentacao
+     */
     @Override
     public void atualizaFundamentacao(String parecerId, String fundamentacao) {
         Parecer parecerAtual = byId(parecerId);
@@ -169,14 +164,12 @@ public class ListaParecer implements Serializable, ParecerRepository {
         removeParecer(parecerId);
         //armazena novo parecer
         persisteParecer(novoParecer);
-
     }
 
     /**
      * Recupera o parecer pelo identificador.
      *
      * @param id O identificador do parecer.
-     *
      * @return O parecer recuperado ou o valor {@code null}, caso o
      * identificador não defina um parecer.
      */
@@ -195,10 +188,6 @@ public class ListaParecer implements Serializable, ParecerRepository {
 
     /**
      * Remove o parecer.
-     *
-     * <p>
-     * Se o identificador fornecido é inválido ou não correspondente a um
-     * parecer existente, nenhuma situação excepcional é gerada.
      *
      * @param id O identificador único do parecer.
      */
@@ -228,7 +217,8 @@ public class ListaParecer implements Serializable, ParecerRepository {
     }
 
     /**
-     * Conjunto de relatos de atividades e produtos associados a um docente.
+     * TO-DO Conjunto de relatos de atividades e produtos associados a um
+     * docente.
      *
      * <p>
      * Um conjunto de relatos é extraído de fonte externa de informação. Uma
@@ -249,7 +239,7 @@ public class ListaParecer implements Serializable, ParecerRepository {
     }
 
     /**
-     * Remove o RADOC.
+     * TO- DO Remove o RADOC.
      *
      * <p>
      * Após essa operação o RADOC correspondente não estará disponível para
@@ -262,7 +252,7 @@ public class ListaParecer implements Serializable, ParecerRepository {
      * @param identificador O identificador do RADOC.
      */
     @Override
-    public void removeRadoc(String string) {
+    public void removeRadoc(String identificador) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

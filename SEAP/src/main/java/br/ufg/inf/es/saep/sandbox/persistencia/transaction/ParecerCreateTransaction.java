@@ -14,20 +14,23 @@ import java.util.List;
 import org.prevayler.TransactionWithQuery;
 
 /**
- * Transações são necessárias para qualquer alteração no business object
- * Permite o armazenamento das alterações pelo Prevayler
+ * Transações são necessárias para qualquer alteração no business object Permite
+ * o armazenamento das alterações pelo Prevayler
+ * 
+ *Transaction: Criação de um novo parecer
  * @author Marjorie
  */
-public class ParecerCreateTransaction implements TransactionWithQuery{
+public class ParecerCreateTransaction implements TransactionWithQuery {
+
     private final String id;
     private final String resolucao;
     private final List<String> radocs;
     private final List<Pontuacao> pontuacoes;
     private final String fundamentacao;
     private final List<Nota> notas;
-    
-    public ParecerCreateTransaction(String id, String resolucaoId, List<String> radocsIds, List<Pontuacao> pontuacoes, 
-           String fundamentacao, List<Nota> notas) {
+
+    public ParecerCreateTransaction(String id, String resolucaoId, List<String> radocsIds, List<Pontuacao> pontuacoes,
+            String fundamentacao, List<Nota> notas) {
         this.id = id;
         this.resolucao = resolucaoId;
         this.radocs = radocsIds;
@@ -35,10 +38,11 @@ public class ParecerCreateTransaction implements TransactionWithQuery{
         this.fundamentacao = fundamentacao;
         this.notas = notas;
     }
+
     @Override
     public Object executeAndQuery(Object prevalentSystem, Date executionTime) throws Exception {
-        Parecer novoParecer = ((ListaParecer)prevalentSystem).addParecer(id, resolucao, radocs, pontuacoes, fundamentacao, notas);
+        Parecer novoParecer = ((ListaParecer) prevalentSystem).addParecer(id, resolucao, radocs, pontuacoes, fundamentacao, notas);
         return novoParecer;
     }
-    
+
 }

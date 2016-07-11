@@ -11,13 +11,16 @@ import java.util.Date;
 import org.prevayler.TransactionWithQuery;
 
 /**
- * Classe transaction para atualização da fundamentação em um business object parecer
+ * Classe transaction para atualização da fundamentação em um business object
+ * parecer
+ *
  * @author Marjorie
  */
-public class ParecerChangeFundamentacaoTransaction implements TransactionWithQuery{
+public class ParecerChangeFundamentacaoTransaction implements TransactionWithQuery {
+
     private final String id;
     private final String fundamentacao;
-    
+
     public ParecerChangeFundamentacaoTransaction(String id, String fundamentacao) {
         this.id = id;
         this.fundamentacao = fundamentacao;
@@ -25,8 +28,8 @@ public class ParecerChangeFundamentacaoTransaction implements TransactionWithQue
 
     @Override
     public Object executeAndQuery(Object prevalentSystem, Date executionTime) throws Exception {
-        Parecer parecerAlterado = ((ListaParecer)prevalentSystem).novaFundamentacao(id, fundamentacao);
+        Parecer parecerAlterado = ((ListaParecer) prevalentSystem).novaFundamentacao(id, fundamentacao);
         return parecerAlterado;
     }
-    
+
 }
