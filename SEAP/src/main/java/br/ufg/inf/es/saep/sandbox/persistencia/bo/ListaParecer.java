@@ -25,6 +25,7 @@ public class ListaParecer implements Serializable, ParecerRepository {
 
     //lista para armazenamento dos objetos Parecer
     private final List listaParecer = new ArrayList();
+    private final List listaRadoc = new ArrayList();
 
     public ListaParecer() {
         super();
@@ -205,37 +206,48 @@ public class ListaParecer implements Serializable, ParecerRepository {
     }
 
     /**
-     * TO-DO Recupera o RADOC identificado pelo argumento.
-     *
+     * Recupera o RADOC identificado pelo argumento.
      * @param identificador O identificador único do RADOC.
-     *
      * @return O {@code Radoc} correspondente ao identificador fornecido.
      */
     @Override
     public Radoc radocById(String identificador) {
+        //percorre listaRadoc
+        for (Iterator i = listaRadoc.iterator(); i.hasNext();) {
+            Radoc radocAtual = (Radoc) i.next();
+            //identifica radoc por id e retorna radocAtual
+            if (radocAtual.getId().equals(identificador)) {
+                return radocAtual;
+            }
+        }
         return null;
     }
 
     /**
-     * TO-DO Conjunto de relatos de atividades e produtos associados a um
+     * Armazena radoc
+     * Conjunto de relatos de atividades e produtos associados a um
      * docente.
-     *
-     * <p>
-     * Um conjunto de relatos é extraído de fonte externa de informação. Uma
-     * cópia é mantida pelo SAEP para consistência de pareceres efetuados ao
-     * longo do tempo. Convém ressaltar que informações desses relatórios podem
-     * ser alteradas continuamente.
-     *
      * @throws IdentificadorExistente Caso o identificador do objeto a ser
      * persistido seja empregado por RADOC existente.
-     *
      * @param radoc O conjunto de relatos a ser persistido.
-     *
      * @return O identificador único do RADOC.
      */
     @Override
     public String persisteRadoc(Radoc radoc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //percorre listaRadoc
+        for (Iterator i = listaRadoc.iterator(); i.hasNext();) {
+            Radoc radocAtual = (Radoc) i.next();
+            //compara id do radoc à ser adicionado com os já armazenados na listaRadoc
+            if (radoc.getId().equals(radocAtual.getId())) {
+                throw new IdentificadorExistente("Identificador referente a outro parecer já armazenado.");
+            } else {
+                //adiciona radoc a listaRadoc e retorna identificador do mesmo
+                this.listaRadoc.add(radoc);
+                System.out.println("Radoc armazenado.");
+                return radoc.getId();
+            }
+        }
+        return null;
     }
 
     /**
