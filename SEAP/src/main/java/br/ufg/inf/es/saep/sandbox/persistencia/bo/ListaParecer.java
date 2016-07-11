@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.ufg.inf.es.saep.sandbox.persistencia.bo;
 
 import br.ufg.inf.es.saep.sandbox.dominio.Avaliavel;
@@ -11,7 +7,6 @@ import br.ufg.inf.es.saep.sandbox.dominio.IdentificadorDesconhecido;
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
 import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.ParecerRepository;
-import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
 import br.ufg.inf.es.saep.sandbox.dominio.Radoc;
 import java.io.Serializable;
 import java.util.*;
@@ -75,26 +70,6 @@ public class ListaParecer implements Serializable, ParecerRepository {
                 throw new IdentificadorDesconhecido("Nenhum parecer existente com este identificador.");
             }
         }
-    }
-
-    /**
-     * Método para adicionar um novo parecer e persistir o mesmo.
-     *
-     * @param id
-     * @param resolucaoId
-     * @param radocsIds
-     * @param pontuacoes
-     * @param fundamentacao
-     * @param notas
-     * @return novoParecer
-     */
-    public Parecer addParecer(String id, String resolucaoId, List<String> radocsIds,
-            List<Pontuacao> pontuacoes, String fundamentacao, List<Nota> notas) {
-        //cria e persiste novo parecer
-        Parecer novoParecer = new Parecer(id, resolucaoId,
-                radocsIds, pontuacoes, fundamentacao, notas);
-        persisteParecer(novoParecer);
-        return novoParecer;
     }
 
     /**

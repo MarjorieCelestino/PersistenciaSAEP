@@ -1,5 +1,5 @@
 
-package br.ufg.inf.es.saep.sandbox.persistencia.transaction;
+package br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer;
 
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
 import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
