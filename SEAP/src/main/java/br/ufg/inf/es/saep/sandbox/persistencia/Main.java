@@ -25,5 +25,8 @@ public class Main {
                 createPrevayler(new ListaParecer(), "Parecer");
         final Prevayler prevaylerResolucao = PrevaylerFactory.
                 createPrevayler(new ListaResolucao(), "Resolucao");
+                
+        //adicionar a linha abaixo na classe Main, após o método create da PrevaylerFactory
+        new SnapshotTimer(prevayler).start();  
     }
 }
