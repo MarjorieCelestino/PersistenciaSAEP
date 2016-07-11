@@ -121,47 +121,29 @@ public class ListaParecer implements Serializable, ParecerRepository {
     }
 
     /**
-     * Altera a fundamentação do parecer.
-     *
-     * @return novoParecer (com fundamentação alterada)
-     * @throws IdentificadorDesconhecido Caso o identificador fornecido não
-     * identifique um parecer.
-     * @param parecerId O identificador único do parecer.
-     * @param fundamentacao Novo texto da fundamentação do parecer.
-     */
-    public Parecer novaFundamentacao(String parecerId, String fundamentacao) {
-        //percorre listaParecer
-        for (Iterator i = listaParecer.iterator(); i.hasNext();) {
-            Parecer parecerAtual = (Parecer) i.next();
-            //compara id do parecer com o fornecido
-            if (parecerAtual.getId().equals(parecerId)) {
-                //atualiza a fundamentação, remove parecer antigo e salva um novo com mesmo id
-                atualizaFundamentacao(parecerId, fundamentacao);
-            } else {
-                throw new IdentificadorDesconhecido("Nenhum parecer existente com este identificador.");
-            }
-        }
-        //recebe e retorna parecer com a fundamentação atualizada
-        Parecer novoParecer = byId(parecerId);
-        return novoParecer;
-    }
-
-    /**
-     * Altera fundamentação, remove e persiste parecer.
+     * Altera fundamentação, e persiste parecer atualizado.
      *
      * @param parecerId
      * @param fundamentacao
      */
     @Override
     public void atualizaFundamentacao(String parecerId, String fundamentacao) {
-        Parecer parecerAtual = byId(parecerId);
-        Parecer novoParecer = new Parecer(parecerAtual.getId(), parecerAtual.getResolucao(),
-                parecerAtual.getRadocs(), parecerAtual.getPontuacoes(), fundamentacao,
-                parecerAtual.getNotas());
-        //apaga parecerAtual
-        removeParecer(parecerId);
-        //armazena novo parecer
-        persisteParecer(novoParecer);
+        //percorre listaParecer
+        for (Iterator i = listaParecer.iterator(); i.hasNext();) {
+            Parecer parecerAtual = (Parecer) i.next();
+            //compara id do parecer com o fornecido
+            if (parecerAtual.getId().equals(parecerId)) {
+                Parecer novoParecer = new Parecer(parecerAtual.getId(), parecerAtual.getResolucao(),
+                        parecerAtual.getRadocs(), parecerAtual.getPontuacoes(), fundamentacao,
+                        parecerAtual.getNotas());
+                //apaga parecerAtual
+                removeParecer(parecerId);
+                //armazena novo parecer
+                persisteParecer(novoParecer);
+            } else {
+                throw new IdentificadorDesconhecido("Nenhum parecer existente com este identificador.");
+            }
+        }
     }
 
     /**
