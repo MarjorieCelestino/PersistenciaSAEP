@@ -17,6 +17,7 @@ import java.util.*;
  */
 public class ControlaParecer implements ParecerRepository {
 
+    private List<Radoc> listaRadoc = new ArrayList<Radoc>();
     /**
      * Adiciona nota ao parecer.
      *
@@ -51,7 +52,7 @@ public class ControlaParecer implements ParecerRepository {
     @Override
     public void removeNota(String id, Avaliavel original) {
         //percorre listaParecer
-        for (Iterator i = listaParecer.iterator(); i.hasNext();) {
+        for (Iterator i = ListaParecer.listaParecer.iterator(); i.hasNext();) {
             Parecer parecerAtual = (Parecer) i.next();
             //compara id do parecer com o fornecido
             if (parecerAtual.getId().equals(id)) {
@@ -92,7 +93,7 @@ public class ControlaParecer implements ParecerRepository {
     @Override
     public void atualizaFundamentacao(String parecerId, String fundamentacao) {
         //percorre listaParecer
-        for (Iterator i = listaParecer.iterator(); i.hasNext();) {
+        for (Iterator i = ListaParecer.listaParecer.iterator(); i.hasNext();) {
             Parecer parecerAtual = (Parecer) i.next();
             //compara id do parecer com o fornecido
             if (parecerAtual.getId().equals(parecerId)) {
@@ -207,7 +208,7 @@ public class ControlaParecer implements ParecerRepository {
             if (radocAtual.getId().equals(identificador)) {
                 //Não é permitida a remoção de um RADOC para o qual há pelo menos um parecer referenciando-o. 
                 // Percorre listaParecer e verifica se o radocAtual é referenciado por algum parecer.
-                for (Iterator j = listaParecer.iterator(); j.hasNext();) {
+                for (Iterator j = ListaParecer.listaParecer.iterator(); j.hasNext();) {
                     Parecer parecerAtual = (Parecer) j.next();
                     if (parecerAtual.getRadocs().equals(radocAtual)) {
                         System.out.println("Radoc relacionado a um parecer.");
@@ -218,18 +219,6 @@ public class ControlaParecer implements ParecerRepository {
                     }
                 }
             }
-        }
-    }
-    
-    //Métodos criados
-    public void imprimeParecer(){
-        for (int i = 0; i < listaParecer.size(); i++) {
-                    System.out.println(listaParecer.get(i).getId() + "\t"
-                            + listaParecer.get(i).getResolucao() + "\t"
-                            + listaParecer.get(i).getRadocs() + "\t"
-                            + listaParecer.get(i).getPontuacoes() + "\t"
-                            + listaParecer.get(i).getFundamentacao() + "\t"
-                            + listaParecer.get(i).getNotas());
         }
     }
 }

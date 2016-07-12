@@ -26,14 +26,14 @@ public class ListaParecer implements Serializable{
     /**
      * Cria lista para armazenamento dos pareceres
      */
-    public static List<ParecerSeriavel> listaParecer = new ArrayList<ParecerSeriavel>();
+    public static List<Parecer> listaParecer = new ArrayList<Parecer>();
     
     /**
      * adiciona e persiste parecer
      * @param novoParecer
      * @return novoParecer
      */
-    public Parecer addParecer(ParecerSeriavel novoParecer){
+    public Parecer addParecer(Parecer novoParecer){
         control.persisteParecer(novoParecer);
         if(pode){
             listaParecer.add(novoParecer);

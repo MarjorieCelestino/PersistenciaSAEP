@@ -5,7 +5,6 @@ import br.ufg.inf.es.saep.sandbox.dominio.Nota;
 import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
 import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
-import br.ufg.inf.es.saep.sandbox.persistencia.bo.ParecerSeriavel;
 import java.util.Date;
 import java.util.List;
 import org.prevayler.Transaction;
@@ -52,7 +51,7 @@ public class ParecerCreateTransaction implements Transaction{
      */
     @Override
     public void executeOn(Object prevalentSystem, Date executionTime){
-        ((ListaParecer) prevalentSystem).addParecer(new ParecerSeriavel(id, resolucaoId,
+        ((ListaParecer) prevalentSystem).addParecer(new Parecer(id, resolucaoId,
                 radocsIds, pontuacoes, fundamentacao, notas));
     }
 
