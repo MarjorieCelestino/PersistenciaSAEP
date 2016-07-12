@@ -14,7 +14,6 @@ public class SnapshotTimer extends Thread {
      Prevayler prevayler;  
   
     /**
-     *
      * @param prevayler
      */
     public SnapshotTimer(Prevayler prevayler) {  
