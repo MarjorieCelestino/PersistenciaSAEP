@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufg.inf.es.saep.sandbox.persistencia.bo;
+package br.ufg.inf.es.saep.sandbox.persistencia.teste;
 
+import br.ufg.inf.es.saep.sandbox.persistencia.bo.*;
 import br.ufg.inf.es.saep.sandbox.dominio.IdentificadorExistente;
-import br.ufg.inf.es.saep.sandbox.dominio.Nota;
 import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -69,10 +69,6 @@ public class ListaParecer implements Serializable{
         for (int i = 0; i < listaParecer.size(); i++) {  
             System.out.println(listaParecer.get(i).getId());  
         } 
-    }
-    
-    public void addNota(String id, Nota nota){
-        control.adicionaNota(id, nota);
     }
 
 }

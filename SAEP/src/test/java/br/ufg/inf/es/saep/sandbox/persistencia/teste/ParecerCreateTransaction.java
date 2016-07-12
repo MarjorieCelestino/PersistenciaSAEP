@@ -1,8 +1,7 @@
 
-package br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer;
+package br.ufg.inf.es.saep.sandbox.persistencia.teste;
 
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
-import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
 import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
 import br.ufg.inf.es.saep.sandbox.persistencia.bo.ParecerSeriavel;

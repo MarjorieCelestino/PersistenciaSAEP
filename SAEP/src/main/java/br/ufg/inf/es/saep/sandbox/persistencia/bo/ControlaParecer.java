@@ -28,7 +28,7 @@ public class ControlaParecer implements ParecerRepository {
     @Override
     public void adicionaNota(String id, Nota nota) {
         //percorre listaParecer
-        for (Iterator i = listaParecer.iterator(); i.hasNext();) {
+        for (Iterator i = ListaParecer.listaParecer.iterator(); i.hasNext();) {
             Parecer parecerAtual = (Parecer) i.next();
             //compara id do parecer com o fornecido
             if (parecerAtual.getId().equals(id)) {
@@ -72,20 +72,15 @@ public class ControlaParecer implements ParecerRepository {
      */
     @Override
     public void persisteParecer(Parecer parecer) {
-        //verifica se a lista está vazia
-        if(ListaParecer.listaParecer.isEmpty()){
-          ListaParecer.listaParecer.add(parecer);
-        }else{
-            //percorre listaParecer
             for (int i = 0; i < ListaParecer.listaParecer.size(); i++) {
                 //compara id do parecer à ser adicionado com os já armazenados na listaParecer
                  if(ListaParecer.listaParecer.get(i).getId().equals(parecer.getId())){
+                    ListaParecer.pode = false;
                     throw new IdentificadorExistente("Identificador referente a outro parecer já armazenado.");
                 } else {
-                    ListaParecer.listaParecer.add(parecer);
+                    ListaParecer.pode = true;
                 }
             }
-        }
     }
 
     /**

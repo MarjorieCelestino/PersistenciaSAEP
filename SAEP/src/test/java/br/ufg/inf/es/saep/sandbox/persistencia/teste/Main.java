@@ -1,9 +1,10 @@
 package br.ufg.inf.es.saep.sandbox.persistencia.teste;
 
+
+import br.ufg.inf.es.saep.sandbox.dominio.Avaliavel;
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
 import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
-import br.ufg.inf.es.saep.sandbox.persistencia.FactoryParecer;
-import br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer.ParecerCreateTransaction;
+import br.ufg.inf.es.saep.sandbox.dominio.Valor;
 import org.prevayler.Prevayler;
 import java.util.*;
 
@@ -24,16 +25,22 @@ public class Main {
         //Criação de listas para testes e scanner
         Scanner scan = new Scanner(System.in);
         List<String> radoc = new ArrayList();
+        radoc.add("radoc1");
         List<Pontuacao> pontos = new ArrayList();
+        pontos.add(new Pontuacao("ponto", new Valor("12")));
         List<Nota> notas = new ArrayList();
+                
         
+        ListaParecer list = new ListaParecer();
         //transition criar e persistir parecer
         try {
-                prev.execute(new ParecerCreateTransaction("1", "resolucaoId", radoc, pontos, "fundamentacao", notas));
+                prev.execute(new ParecerCreateTransaction("1", "resolucaoId", radoc, pontos, "fundamentacao"));
                 System.out.println("Pessoa armazenada.");
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
+        
+        list.imprimeIds();
                 
     }
 }
