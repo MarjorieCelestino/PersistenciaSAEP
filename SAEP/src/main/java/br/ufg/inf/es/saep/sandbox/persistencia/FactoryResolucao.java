@@ -6,39 +6,35 @@
 package br.ufg.inf.es.saep.sandbox.persistencia;
 
 import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaResolucao;
 import org.prevayler.Prevayler;
 import org.prevayler.PrevaylerFactory;
 import org.prevayler.foundation.serialization.XStreamSerializer;
 
 /**
- * Classe utilizada para criação de uma nova factory
+ *
  * @author Marjorie
  */
-public class FactoryParecer {
-
-    /**
-     *
-     */
-    public static Prevayler prevayler;
+public class FactoryResolucao {
+    public static Prevayler prevayler2;
     //Cria e configura factory
 
     /**
-     * cria e configura factory para parecer
+     * cria e configura factory para resolucao
      * @throws Exception
      */
-    public FactoryParecer() throws Exception{
+    public FactoryResolucao() throws Exception{
        System.out.println("Iniciando Prevayler...");
         //configura e cria sistema prevalente para Listaparecer
         PrevaylerFactory factory = new PrevaylerFactory();
-        factory.configurePrevalenceDirectory("LogsParecer");
-        factory.configurePrevalentSystem(new ListaParecer());
+        factory.configurePrevalenceDirectory("LogsResolucao");
+        factory.configurePrevalentSystem(new ListaResolucao());
         //configura serialização de journal e snapshot
         factory.configureJournalSerializer(new XStreamSerializer());
         factory.configureSnapshotSerializer(new XStreamSerializer());
         //cria factory 
-        prevayler = factory.create();
+        prevayler2 = factory.create();
         //chama thread responsável por snapshots 
-        new SnapshotTimer(prevayler).start();
+        new SnapshotTimer(prevayler2).start();
     }
-    
 }

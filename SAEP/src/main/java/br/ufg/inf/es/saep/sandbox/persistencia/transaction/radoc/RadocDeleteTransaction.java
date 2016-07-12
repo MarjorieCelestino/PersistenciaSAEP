@@ -14,11 +14,21 @@ public class RadocDeleteTransaction implements Transaction {
      private final String idParecer;
     private final String idRadoc;
     
+    /**
+     *
+     * @param idP
+     * @param idR
+     */
     public RadocDeleteTransaction(String idP, String idR){
         this.idParecer = idP;
         this.idRadoc = idR;
     }
     
+    /**
+     *
+     * @param prevalentSystem
+     * @param executionTime
+     */
     @Override
     public void executeOn(Object prevalentSystem, Date executionTime) {
         Parecer novoParecer = ((ControlaParecer) prevalentSystem).byId(idParecer);

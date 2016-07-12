@@ -21,6 +21,13 @@ public class RadocCreateTransaction implements Transaction{
     private final int anoBase;
     private final List<Relato> relatos;
     
+    /**
+     *
+     * @param idParecer
+     * @param id
+     * @param anoBase
+     * @param relatos
+     */
     public RadocCreateTransaction(String idParecer, String id, int anoBase, List<Relato> relatos){
         this.idParecer = idParecer;
         this.id = id;
@@ -28,6 +35,11 @@ public class RadocCreateTransaction implements Transaction{
         this.relatos = relatos;
     }
 
+    /**
+     *
+     * @param prevalentSystem
+     * @param executionTime
+     */
     @Override
     public void executeOn(Object prevalentSystem, Date executionTime) {
         Parecer novoParecer = ((ControlaParecer) prevalentSystem).byId(idParecer);

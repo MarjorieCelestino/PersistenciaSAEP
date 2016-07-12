@@ -31,6 +31,10 @@ public class ListaParecer implements Serializable{
      * Cria lista para armazenamento dos pareceres
      */
     public static List<Parecer> listaParecer = new ArrayList<Parecer>();
+
+    /**
+     *
+     */
     public static List<Radoc> listaRadoc = new ArrayList<Radoc>();
     
     /**
@@ -66,14 +70,12 @@ public class ListaParecer implements Serializable{
      */
     public void deletaParecer(String id){
         control.removeParecer(id);
-        System.out.println("Parecer removido.");
     }
     
     /**
      * Imprime as ids de cada paecer armazenado
      */
     public void imprimeIds(){ 
-        System.out.println("Id dos pareceres armazenados: \n");
         for (int i = 0; i < listaParecer.size(); i++) {  
             System.out.println(listaParecer.get(i).getId());  
         } 

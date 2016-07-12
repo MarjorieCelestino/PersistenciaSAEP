@@ -13,6 +13,10 @@ import org.prevayler.Prevayler;
 public class SnapshotTimer extends Thread {
      Prevayler prevayler;  
   
+    /**
+     *
+     * @param prevayler
+     */
     public SnapshotTimer(Prevayler prevayler) {  
         this.prevayler = prevayler;  
         this.setDaemon(true);  

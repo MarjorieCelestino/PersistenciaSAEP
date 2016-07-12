@@ -16,7 +16,7 @@ import java.util.*;
  * @author Marjorie
  */
 public class ControlaParecer implements ParecerRepository {
-
+    private static final long serialVersionUID = 1l;
     /**
      * Adiciona nota ao parecer.
      *
