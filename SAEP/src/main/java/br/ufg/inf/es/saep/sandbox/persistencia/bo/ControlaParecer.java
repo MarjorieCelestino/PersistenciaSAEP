@@ -17,7 +17,6 @@ import java.util.*;
  */
 public class ControlaParecer implements ParecerRepository {
 
-    private List<Radoc> listaRadoc = new ArrayList<Radoc>();
     /**
      * Adiciona nota ao parecer.
      *
@@ -157,7 +156,7 @@ public class ControlaParecer implements ParecerRepository {
     @Override
     public Radoc radocById(String identificador) {
         //percorre listaRadoc
-        for (Iterator i = listaRadoc.iterator(); i.hasNext();) {
+        for (Iterator i = ListaParecer.listaRadoc.iterator(); i.hasNext();) {
             Radoc radocAtual = (Radoc) i.next();
             //identifica radoc por id e retorna radocAtual
             if (radocAtual.getId().equals(identificador)) {
@@ -179,14 +178,14 @@ public class ControlaParecer implements ParecerRepository {
     @Override
     public String persisteRadoc(Radoc radoc) {
         //percorre listaRadoc
-        for (Iterator i = listaRadoc.iterator(); i.hasNext();) {
+        for (Iterator i = ListaParecer.listaRadoc.iterator(); i.hasNext();) {
             Radoc radocAtual = (Radoc) i.next();
             //compara id do radoc à ser adicionado com os já armazenados na listaRadoc
             if (radoc.getId().equals(radocAtual.getId())) {
                 throw new IdentificadorExistente("Identificador referente a outro parecer já armazenado.");
             } else {
                 //adiciona radoc a listaRadoc e retorna identificador do mesmo
-                this.listaRadoc.add(radoc);
+                ListaParecer.listaRadoc.add(radoc);
                 System.out.println("Radoc armazenado.");
                 return radoc.getId();
             }
@@ -202,7 +201,7 @@ public class ControlaParecer implements ParecerRepository {
     @Override
     public void removeRadoc(String identificador) {
         //percorre listaRadoc
-        for (Iterator i = listaRadoc.iterator(); i.hasNext();) {
+        for (Iterator i = ListaParecer.listaRadoc.iterator(); i.hasNext();) {
             Radoc radocAtual = (Radoc) i.next();
             //compara id do radoc à ser adicionado com os já armazenados na listaRadoc
             if (radocAtual.getId().equals(identificador)) {
@@ -214,7 +213,7 @@ public class ControlaParecer implements ParecerRepository {
                         System.out.println("Radoc relacionado a um parecer.");
                     } else {
                         //deleta radocAtual
-                        this.listaRadoc.remove(radocAtual);
+                        ListaParecer.listaRadoc.remove(radocAtual);
                         System.out.println("Radoc removido.");
                     }
                 }

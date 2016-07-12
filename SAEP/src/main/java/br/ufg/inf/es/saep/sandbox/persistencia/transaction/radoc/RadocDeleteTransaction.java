@@ -1,9 +1,11 @@
 
 package br.ufg.inf.es.saep.sandbox.persistencia.transaction.radoc;
 
+import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import java.util.Date;
 import org.prevayler.Transaction;
 import br.ufg.inf.es.saep.sandbox.persistencia.bo.ControlaParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
 /**
  *
  * @author Marjorie
@@ -19,6 +21,7 @@ public class RadocDeleteTransaction implements Transaction {
     
     @Override
     public void executeOn(Object prevalentSystem, Date executionTime) {
-        ((ControlaParecer)prevalentSystem).removeRadoc(idRadoc);
+        Parecer novoParecer = ((ControlaParecer) prevalentSystem).byId(idParecer);
+        ((ListaParecer) prevalentSystem).deletaRadoc(idRadoc);
     }
 }

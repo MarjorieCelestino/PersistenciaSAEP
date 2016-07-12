@@ -8,6 +8,7 @@ package br.ufg.inf.es.saep.sandbox.persistencia.bo;
 import br.ufg.inf.es.saep.sandbox.dominio.IdentificadorExistente;
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
 import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
+import br.ufg.inf.es.saep.sandbox.dominio.Radoc;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,9 @@ import java.util.List;
 public class ListaParecer implements Serializable{
     private static final long serialVersionUID = 1l;
     
+    /**
+     *
+     */
     public static boolean pode = true;
     //referência a classe controla parecer
     ControlaParecer control;
@@ -27,6 +31,7 @@ public class ListaParecer implements Serializable{
      * Cria lista para armazenamento dos pareceres
      */
     public static List<Parecer> listaParecer = new ArrayList<Parecer>();
+    public static List<Radoc> listaRadoc = new ArrayList<Radoc>();
     
     /**
      * adiciona e persiste parecer
@@ -64,6 +69,9 @@ public class ListaParecer implements Serializable{
         System.out.println("Parecer removido.");
     }
     
+    /**
+     * Imprime as ids de cada paecer armazenado
+     */
     public void imprimeIds(){ 
         System.out.println("Id dos pareceres armazenados: \n");
         for (int i = 0; i < listaParecer.size(); i++) {  
@@ -71,8 +79,37 @@ public class ListaParecer implements Serializable{
         } 
     }
     
+    /**
+     * adiciona nota ao parecer
+     * @param id
+     * @param nota
+     */
     public void addNota(String id, Nota nota){
         control.adicionaNota(id, nota);
     }
 
+    /**
+     * atualiza a fundamentacao do parecer
+     * @param parecerId
+     * @param fundamentacao
+     */
+    public void mudaFundamentacao(String parecerId, String fundamentacao){
+        control.atualizaFundamentacao(parecerId, fundamentacao);
+    }
+    
+    /**
+     * adiciona radoc ao parecer
+     * @param radoc
+     */
+    public void addRadoc(Radoc radoc){
+        control.persisteRadoc(radoc);
+    }
+    
+    /**
+     * remove radoc 
+     * @param id
+     */
+    public void deletaRadoc(String id){
+        control.removeRadoc(id);
+    }
 }

@@ -3,31 +3,34 @@ package br.ufg.inf.es.saep.sandbox.persistencia.transaction.radoc;
 
 import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.Radoc;
+import br.ufg.inf.es.saep.sandbox.dominio.Relato;
 import br.ufg.inf.es.saep.sandbox.persistencia.bo.ControlaParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
 import java.util.Date;
-import org.prevayler.TransactionWithQuery;
+import java.util.List;
+import org.prevayler.Transaction;
 
 /**
  *Transaction criação/persistencia de radoc em um business object parecer
  * 
  * @author Marjorie
  */
-public class RadocCreateTransaction implements TransactionWithQuery {
+public class RadocCreateTransaction implements Transaction{
     private final String idParecer;
-    private final String idRadoc;
+    private final String id;
+    private final int anoBase;
+    private final List<Relato> relatos;
     
-    public RadocCreateTransaction(String idP, String idR){
-        this.idParecer = idP;
-        this.idRadoc = idR;
+    public RadocCreateTransaction(String idParecer, String id, int anoBase, List<Relato> relatos){
+        this.idParecer = idParecer;
+        this.id = id;
+        this.anoBase = anoBase;
+        this.relatos = relatos;
     }
 
     @Override
-    public Object executeAndQuery(Object prevalentSystem, Date executionTime) throws Exception {
+    public void executeOn(Object prevalentSystem, Date executionTime) {
         Parecer novoParecer = ((ControlaParecer) prevalentSystem).byId(idParecer);
-        Radoc novoRadoc = ((ControlaParecer) prevalentSystem).radocById(idRadoc);
-        ((ControlaParecer) prevalentSystem).persisteRadoc(novoRadoc);
-        novoParecer.getRadocs().add(idRadoc);
-
-        return novoRadoc;
+        ((ListaParecer) prevalentSystem).addRadoc(new Radoc(id, anoBase, relatos));
     }
 }
