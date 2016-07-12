@@ -4,6 +4,9 @@ package br.ufg.inf.es.saep.sandbox.persistencia.teste;
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
 import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
 import br.ufg.inf.es.saep.sandbox.dominio.Valor;
+import br.ufg.inf.es.saep.sandbox.persistencia.FactoryParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer.ParecerCreateTransaction;
 import org.prevayler.Prevayler;
 import java.util.*;
 
