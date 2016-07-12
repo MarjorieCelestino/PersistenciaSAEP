@@ -1,0 +1,20 @@
+26F;withQuery=false;systemVersion=4;executionTime=1468362852202
+<br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer.ParecerCreateTransaction>
+  <id>1</id>
+  <resolucaoId>resolucaoId</resolucaoId>
+  <radocsIds>
+    <string>radoc1</string>
+  </radocsIds>
+  <pontuacoes>
+    <br.ufg.inf.es.saep.sandbox.dominio.Pontuacao>
+      <atributo>ponto</atributo>
+      <valor>
+        <real>0.0</real>
+        <logico>false</logico>
+        <string>12</string>
+      </valor>
+    </br.ufg.inf.es.saep.sandbox.dominio.Pontuacao>
+  </pontuacoes>
+  <fundamentacao>fundamentacao</fundamentacao>
+  <notas/>
+</br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer.ParecerCreateTransaction>

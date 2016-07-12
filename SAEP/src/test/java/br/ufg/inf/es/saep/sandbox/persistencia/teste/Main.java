@@ -6,7 +6,9 @@ import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
 import br.ufg.inf.es.saep.sandbox.dominio.Valor;
 import br.ufg.inf.es.saep.sandbox.persistencia.FactoryParecer;
 import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer.ParecerChangeAddNotaTransaction;
 import br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer.ParecerCreateTransaction;
+import br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer.ParecerDeleteTransaction;
 import org.prevayler.Prevayler;
 import java.util.*;
 
@@ -37,12 +39,24 @@ public class Main {
         //transition criar e persistir parecer
         try {
                 prev.execute(new ParecerCreateTransaction("1", "resolucaoId", radoc, pontos, "fundamentacao", notas));
-                System.out.println("Pessoa armazenada.");
+                System.out.println("Parecer armazenada.");
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
-        
-        list.imprimeIds();
+        //remover parecer
+        try {
+                prev.execute(new ParecerDeleteTransaction("id"));
+                System.out.println("Parecer .");
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+        //adiciona nota
+        try {
+                //prev.execute(new ParecerChangeAddNotaTransaction("id",));
+                System.out.println("Parecer .");
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
                 
     }
 }
