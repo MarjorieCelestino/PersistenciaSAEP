@@ -3,7 +3,7 @@ package br.ufg.inf.es.saep.sandbox.persistencia.transaction.radoc;
 
 import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.Radoc;
-import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.bo.ControlaParecer;
 import java.util.Date;
 import org.prevayler.TransactionWithQuery;
 
@@ -23,9 +23,9 @@ public class RadocCreateTransaction implements TransactionWithQuery {
 
     @Override
     public Object executeAndQuery(Object prevalentSystem, Date executionTime) throws Exception {
-        Parecer novoParecer = ((ListaParecer) prevalentSystem).byId(idParecer);
-        Radoc novoRadoc = ((ListaParecer) prevalentSystem).radocById(idRadoc);
-        ((ListaParecer) prevalentSystem).persisteRadoc(novoRadoc);
+        Parecer novoParecer = ((ControlaParecer) prevalentSystem).byId(idParecer);
+        Radoc novoRadoc = ((ControlaParecer) prevalentSystem).radocById(idRadoc);
+        ((ControlaParecer) prevalentSystem).persisteRadoc(novoRadoc);
         novoParecer.getRadocs().add(idRadoc);
 
         return novoRadoc;
