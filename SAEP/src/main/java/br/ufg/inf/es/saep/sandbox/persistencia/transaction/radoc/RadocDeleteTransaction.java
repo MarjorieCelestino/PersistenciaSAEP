@@ -4,8 +4,8 @@ package br.ufg.inf.es.saep.sandbox.persistencia.transaction.radoc;
 import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import java.util.Date;
 import org.prevayler.Transaction;
-import br.ufg.inf.es.saep.sandbox.persistencia.bo.ControlaParecer;
-import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.businessObject.ControlaParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.businessObject.ListaParecer;
 /**
  *
  * @author Marjorie

@@ -1,5 +1,5 @@
 
-package br.ufg.inf.es.saep.sandbox.persistencia.bo;
+package br.ufg.inf.es.saep.sandbox.persistencia.businessObject;
 
 import br.ufg.inf.es.saep.sandbox.dominio.CampoExigidoNaoFornecido;
 import br.ufg.inf.es.saep.sandbox.dominio.Resolucao;

@@ -5,7 +5,7 @@
  */
 package br.ufg.inf.es.saep.sandbox.persistencia.transaction.resolucao;
 
-import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaResolucao;
+import br.ufg.inf.es.saep.sandbox.persistencia.businessObject.ListaResolucao;
 import java.util.Date;
 import org.prevayler.Transaction;
 

@@ -1,8 +1,8 @@
 
 package br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer;
 
-import br.ufg.inf.es.saep.sandbox.persistencia.bo.ControlaParecer;
-import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.businessObject.ControlaParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.businessObject.ListaParecer;
 import java.util.Date;
 import org.prevayler.Transaction;
 

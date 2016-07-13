@@ -4,7 +4,7 @@ package br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
 import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
-import br.ufg.inf.es.saep.sandbox.persistencia.bo.ListaParecer;
+import br.ufg.inf.es.saep.sandbox.persistencia.businessObject.ListaParecer;
 import java.util.Date;
 import java.util.List;
 import org.prevayler.Transaction;
