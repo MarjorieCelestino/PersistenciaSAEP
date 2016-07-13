@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufg.inf.es.saep.sandbox.persistencia.businessObject;
 
 import br.ufg.inf.es.saep.sandbox.dominio.IdentificadorExistente;
@@ -14,104 +9,108 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Marjorie
+ * Classe serializável que manipula os métodos responsáveis pelas transactions
+ * referentes ao objeto parecer
  */
-public class ListaParecer implements Serializable{
+public class ListaParecer implements Serializable {
+
     private static final long serialVersionUID = 1l;
-    
-    /**
-     *
-     */
+
     public static boolean pode = true;
-    //referência a classe controla parecer
     ControlaParecer control;
-    
+
     /**
      * Cria lista para armazenamento dos pareceres
      */
     public static List<Parecer> listaParecer = new ArrayList<Parecer>();
 
     /**
-     *
+     * Cria lista para armazenamento dos radocs
      */
     public static List<Radoc> listaRadoc = new ArrayList<Radoc>();
-    
+
     /**
-     * adiciona e persiste parecer
+     * Adiciona e persiste parecer
+     *
      * @param novoParecer
      * @return novoParecer
      */
-    public Parecer addParecer(Parecer novoParecer){
+    public Parecer addParecer(Parecer novoParecer) {
         control.persisteParecer(novoParecer);
-        if(pode){
+        if (pode) {
             listaParecer.add(novoParecer);
-        }else{
+        } else {
             throw new IdentificadorExistente("Identificador referente a outro parecer já armazenado.");
         }
-        
+
         return novoParecer;
     }
-    
+
     /**
-     * encontra parecer pela id
+     * Encontra parecer pela id
+     *
      * @param id
      * @return parecerEncontrado
      */
-    public Parecer getParecer(String id){
+    public Parecer getParecer(String id) {
         //busca parecer por id
         Parecer parecerEncontrado = control.byId(id);
         return parecerEncontrado;
     }
-    
+
     /**
-     * encontra e remove parecer pela id
+     * Encontra e remove parecer pela id
+     *
      * @param id
      */
-    public void deletaParecer(String id){
+    public void deletaParecer(String id) {
         control.removeParecer(id);
     }
-    
+
     /**
      * Imprime as ids de cada paecer armazenado
      */
-    public void imprimeIds(){ 
-        for (int i = 0; i < listaParecer.size(); i++) {  
-            System.out.println(listaParecer.get(i).getId());  
-        } 
+    public void imprimeIds() {
+        for (int i = 0; i < listaParecer.size(); i++) {
+            System.out.println(listaParecer.get(i).getId());
+        }
     }
-    
+
     /**
-     * adiciona nota ao parecer
+     * Adiciona nota ao parecer
+     *
      * @param id
      * @param nota
      */
-    public void addNota(String id, Nota nota){
+    public void addNota(String id, Nota nota) {
         control.adicionaNota(id, nota);
     }
 
     /**
-     * atualiza a fundamentacao do parecer
+     * Atualiza a fundamentacao do parecer
+     *
      * @param parecerId
      * @param fundamentacao
      */
-    public void mudaFundamentacao(String parecerId, String fundamentacao){
+    public void mudaFundamentacao(String parecerId, String fundamentacao) {
         control.atualizaFundamentacao(parecerId, fundamentacao);
     }
-    
+
     /**
-     * adiciona radoc ao parecer
+     * Adiciona radoc ao parecer
+     *
      * @param radoc
      */
-    public void addRadoc(Radoc radoc){
+    public void addRadoc(Radoc radoc) {
         control.persisteRadoc(radoc);
     }
-    
+
     /**
-     * remove radoc 
+     * Remove radoc
+     *
      * @param id
      */
-    public void deletaRadoc(String id){
+    public void deletaRadoc(String id) {
         control.removeRadoc(id);
     }
 }

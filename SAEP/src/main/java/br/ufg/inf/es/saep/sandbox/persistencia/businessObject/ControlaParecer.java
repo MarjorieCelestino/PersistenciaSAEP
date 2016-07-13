@@ -15,14 +15,14 @@ import java.util.*;
 public class ControlaParecer implements ParecerRepository {
 
     /**
-     * @return ListaParecer.listaParece
+     * @return lista de parecer
      */
     public List<Parecer> listaParecer() {
         return ListaParecer.listaParecer;
     }
 
     /**
-     * @return ListaParecer.listaRadoc
+     * @return lista de radoc
      */
     public List<Radoc> listaRadoc() {
         return ListaParecer.listaRadoc;
@@ -96,7 +96,7 @@ public class ControlaParecer implements ParecerRepository {
 
     /**
      * @param id
-     * @return parecerAtual
+     * @return parecer encontrado pelo identificado
      */
     @Override
     public Parecer byId(String id) {
@@ -124,7 +124,7 @@ public class ControlaParecer implements ParecerRepository {
 
     /**
      * @param identificador
-     * @return
+     * @return radoc encontrado pelo identificador
      */
     @Override
     public Radoc radocById(String identificador) {
@@ -139,7 +139,7 @@ public class ControlaParecer implements ParecerRepository {
 
     /**
      * @param radoc
-     * @return radoc.getId()
+     * @return identificador do objeto radoc
      */
     @Override
     public String persisteRadoc(Radoc radoc) {

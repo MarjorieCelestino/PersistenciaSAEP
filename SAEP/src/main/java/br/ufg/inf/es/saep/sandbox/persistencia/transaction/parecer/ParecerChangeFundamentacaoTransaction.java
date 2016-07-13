@@ -5,10 +5,9 @@ import java.util.Date;
 import org.prevayler.Transaction;
 
 /**
- * Classe transaction para atualização da fundamentação em um business object
- * parecer
- *
- * @author Marjorie
+ * Transações são necessárias para qualquer alteração no business object.
+ * Permite o armazenamento das alterações pelo Prevayler Transaction. Classe
+ * transaction para atualização da fundamentação em um business object parecer
  */
 public class ParecerChangeFundamentacaoTransaction implements Transaction {
 
@@ -16,6 +15,7 @@ public class ParecerChangeFundamentacaoTransaction implements Transaction {
     private final String fundamentacao;
 
     /**
+     * Construtor com os parâmetros necessários para realização da transaction.
      *
      * @param id
      * @param fundamentacao
@@ -26,12 +26,11 @@ public class ParecerChangeFundamentacaoTransaction implements Transaction {
     }
 
     /**
-     *
      * @param prevalentSystem
      * @param executionTime
      */
     @Override
-    public void executeOn(Object prevalentSystem, Date executionTime){
+    public void executeOn(Object prevalentSystem, Date executionTime) {
         ((ListaParecer) prevalentSystem).mudaFundamentacao(id, fundamentacao);
     }
 

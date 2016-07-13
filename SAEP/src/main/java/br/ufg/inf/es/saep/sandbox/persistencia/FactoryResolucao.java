@@ -13,7 +13,8 @@ public class FactoryResolucao {
     public static Prevayler prevayler2;
 
     /**
-     * Cria e configura factory para resolução.
+     * Cria e configura factory para resolução. Configura serialização de
+     * journal e snapshot para XML.
      *
      * @throws Exception
      */

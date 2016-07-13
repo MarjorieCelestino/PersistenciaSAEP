@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufg.inf.es.saep.sandbox.persistencia.businessObject;
 
 import br.ufg.inf.es.saep.sandbox.dominio.Resolucao;
@@ -11,34 +6,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Marjorie
+ * Classe serializável que manipula os métodos responsáveis pelas transactions
+ * referentes ao objeto resolucao
  */
-public class ListaResolucao implements Serializable{
+public class ListaResolucao implements Serializable {
+
     private static final long serialVersionUID = 1l;
-    
+
     /**
-     * lista para armazenamento dos objetos Resolucao
+     * Cria lista para armazenamento dos objetos Resolucao
      */
     public static List<Resolucao> listaResolucao = new ArrayList<Resolucao>();
-    
+
     ControlaResolucao control;
-    
+
     /**
-     * adiciona uma nova reoslucao
+     * Adiciona uma nova reoslucao
+     *
      * @param novaResolucao
-     * @return
+     * @return resolucao adicionada
      */
-    public Resolucao addResolucao(Resolucao novaResolucao){
+    public Resolucao addResolucao(Resolucao novaResolucao) {
         control.persiste(novaResolucao);
         return novaResolucao;
     }
-    
+
     /**
-     * deleta a resolução
+     * Deleta a resolução
+     *
      * @param id
      */
-    public void deletaResolucao(String id){
+    public void deletaResolucao(String id) {
         control.remove(id);
-    }    
+    }
 }

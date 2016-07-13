@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufg.inf.es.saep.sandbox.persistencia.transaction.resolucao;
 
 import br.ufg.inf.es.saep.sandbox.dominio.Regra;
@@ -13,20 +8,22 @@ import java.util.List;
 import org.prevayler.Transaction;
 
 /**
- *
- * @author Marjorie
+ * Transações são necessárias para qualquer alteração no business object.
+ * Permite o armazenamento das alterações pelo Prevayler Transaction.
  */
-public class ResolucaoCreateTransaction implements Transaction{
+public class ResolucaoCreateTransaction implements Transaction {
+
     private static final long serialVersionUID = 1L;
-    
+
     private final String id;
     private final Date dataAprovacao;
     private final String nome;
     private final String descricao;
     private final List<Regra> regras;
-    
+
     /**
-     * parametros necessários para execução da transaction
+     * Recebe parâmetros necessários para execução da transaction.
+     *
      * @param id
      * @param nome
      * @param descricao
@@ -40,15 +37,14 @@ public class ResolucaoCreateTransaction implements Transaction{
         this.dataAprovacao = dataAprovacao;
         this.regras = regras;
     }
-        
+
     /**
-     * realiza transaction de adicionar resolução
      * @param prevalentSystem
      * @param executionTime
      */
     @Override
     public void executeOn(Object prevalentSystem, Date executionTime) {
-            ((ListaResolucao) prevalentSystem).addResolucao(new Resolucao(id, nome,
-                    descricao, dataAprovacao, regras));
+        ((ListaResolucao) prevalentSystem).addResolucao(new Resolucao(id, nome,
+                descricao, dataAprovacao, regras));
     }
 }

@@ -1,27 +1,24 @@
-
 package br.ufg.inf.es.saep.sandbox.persistencia.businessObject;
 
 import br.ufg.inf.es.saep.sandbox.dominio.CampoExigidoNaoFornecido;
 import br.ufg.inf.es.saep.sandbox.dominio.Resolucao;
 import br.ufg.inf.es.saep.sandbox.dominio.ResolucaoRepository;
 import br.ufg.inf.es.saep.sandbox.dominio.Tipo;
-import java.io.Serializable;
 import java.util.*;
 
 /**
- * bo: business object Classe seriável composta pela classe Resolucao(bo)
- *
- * @author Marjorie
+ * Obs.: Resolucao é um business object.
  */
-public class ControlaResolucao implements Serializable, ResolucaoRepository {
-    private static final long serialVersionUID = 1l;
-    
+public class ControlaResolucao implements ResolucaoRepository {
 
-   
     /**
-     * Recupera a instância de {@code Resolucao} correspondente ao
-     * identificador.
-     *
+     * @return lista de resolução
+     */
+    public List<Resolucao> listaResolucao() {
+        return ListaResolucao.listaResolucao;
+    }
+
+    /**
      * @param id O identificador único da resolução a ser recuperada.
      *
      * @return {@code Resolucao} identificada por {@code id}. O retorno
@@ -32,10 +29,8 @@ public class ControlaResolucao implements Serializable, ResolucaoRepository {
      */
     @Override
     public Resolucao byId(String id) {
-        //percorre listaResolucao
-        for (Iterator i = ListaResolucao.listaResolucao.iterator(); i.hasNext();) {
+        for (Iterator i = listaResolucao().iterator(); i.hasNext();) {
             Resolucao resolucaoAtual = (Resolucao) i.next();
-            //identifica resolucao por id e retorna resolucaoAtual
             if (resolucaoAtual.getId().equals(id)) {
                 return resolucaoAtual;
             }
@@ -61,16 +56,12 @@ public class ControlaResolucao implements Serializable, ResolucaoRepository {
      */
     @Override
     public String persiste(Resolucao resolucao) {
-        //percorre listaResolucao
-        for (Iterator i = ListaResolucao.listaResolucao.iterator(); i.hasNext();) {
+        for (Iterator i = listaResolucao().iterator(); i.hasNext();) {
             Resolucao resolucaoAtual = (Resolucao) i.next();
-            //compara id da resolução à ser adicionada com as já armazenadas na listaResolucao
             if (resolucao.getId().equals(resolucaoAtual.getId())) {
-                //caso não encontre o id da resolucao
                 throw new CampoExigidoNaoFornecido("Identificador nao fornecido.");
-                //adiciona parecer a listaParecer e retorna id 
             } else {
-                ListaResolucao.listaResolucao.add(resolucao);
+                listaResolucao().add(resolucao);
                 return resolucao.getId();
             }
         }
@@ -89,10 +80,8 @@ public class ControlaResolucao implements Serializable, ResolucaoRepository {
      */
     @Override
     public boolean remove(String identificador) {
-        //percorre listaResolucao
-        for (Iterator i = ListaResolucao.listaResolucao.iterator(); i.hasNext();) {
+        for (Iterator i = listaResolucao().iterator(); i.hasNext();) {
             Resolucao resolucaoAtual = (Resolucao) i.next();
-            //remove resolucao e retorna true  
             if (resolucaoAtual.getId().equals(identificador)) {
                 i.remove();
                 return true;
@@ -108,17 +97,13 @@ public class ControlaResolucao implements Serializable, ResolucaoRepository {
      */
     @Override
     public List<String> resolucoes() {
-        //Cria lista de identificadores de resoluções
         List resolucoesIds = new ArrayList();
         String idResolucao;
-        //percorre a lista de resoluções
-        for (Iterator i = ListaResolucao.listaResolucao.iterator(); i.hasNext();) {
+        for (Iterator i = listaResolucao().iterator(); i.hasNext();) {
             Resolucao resolucaoAtual = (Resolucao) i.next();
-            //salva identificadores de cada resolução armazenada
             idResolucao = resolucaoAtual.getId();
             resolucoesIds.add(idResolucao);
         }
-        //restorna lista de identificadores
         return resolucoesIds;
     }
 
@@ -137,7 +122,6 @@ public class ControlaResolucao implements Serializable, ResolucaoRepository {
      *
      *
      * @param string
-     * @param codigo O identificador do tipo a ser removido.
      */
     @Override
     public void removeTipo(String string) {
@@ -147,7 +131,7 @@ public class ControlaResolucao implements Serializable, ResolucaoRepository {
     /**
      * Recupera o tipo com o código fornecido.
      *
-     * @param codigo O código único do tipo.
+     * @param string
      *
      * @return A instância de {@link Tipo} cujo código único é fornecido.
      * Retorna {@code null} caso não exista tipo com o código indicado.
@@ -165,7 +149,6 @@ public class ControlaResolucao implements Serializable, ResolucaoRepository {
      * Um nome é dito similar se contém a sequência indicada.
      *
      * @param string
-     * @param nome Sequência que será empregada para localizar tipos por nome.
      *
      * @return A coleção de tipos cujos nomes satisfazem um padrão de semelhança
      * com a sequência indicada.

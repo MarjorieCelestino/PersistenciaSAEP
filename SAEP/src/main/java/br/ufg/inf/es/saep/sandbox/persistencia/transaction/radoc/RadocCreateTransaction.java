@@ -1,4 +1,3 @@
-
 package br.ufg.inf.es.saep.sandbox.persistencia.transaction.radoc;
 
 import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
@@ -11,24 +10,26 @@ import java.util.List;
 import org.prevayler.Transaction;
 
 /**
- *Transaction criação/persistencia de radoc em um business object parecer
- * 
- * @author Marjorie
+ * Transações são necessárias para qualquer alteração no business object.
+ * Permite o armazenamento das alterações pelo Prevayler Transaction.
+ * Transaction criação/persistencia de radoc em um business object parecer
  */
-public class RadocCreateTransaction implements Transaction{
+public class RadocCreateTransaction implements Transaction {
+
     private final String idParecer;
     private final String id;
     private final int anoBase;
     private final List<Relato> relatos;
-    
+
     /**
+     * Rcee parâmetros necessários para realização da transaction.
      *
      * @param idParecer
      * @param id
      * @param anoBase
      * @param relatos
      */
-    public RadocCreateTransaction(String idParecer, String id, int anoBase, List<Relato> relatos){
+    public RadocCreateTransaction(String idParecer, String id, int anoBase, List<Relato> relatos) {
         this.idParecer = idParecer;
         this.id = id;
         this.anoBase = anoBase;
@@ -36,7 +37,6 @@ public class RadocCreateTransaction implements Transaction{
     }
 
     /**
-     *
      * @param prevalentSystem
      * @param executionTime
      */
