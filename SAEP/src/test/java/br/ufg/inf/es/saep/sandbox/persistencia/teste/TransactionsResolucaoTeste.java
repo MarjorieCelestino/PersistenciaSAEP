@@ -1,13 +1,15 @@
 package br.ufg.inf.es.saep.sandbox.persistencia.teste;
 
+import br.ufg.inf.es.saep.sandbox.dominio.Regra;
 import br.ufg.inf.es.saep.sandbox.persistencia.FactoryResolucao;
 import br.ufg.inf.es.saep.sandbox.persistencia.businessObject.ListaResolucao;
 import br.ufg.inf.es.saep.sandbox.persistencia.transaction.resolucao.ResolucaoCreateTransaction;
 import br.ufg.inf.es.saep.sandbox.persistencia.transaction.resolucao.ResolucaoDeleteTransaction;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,15 +39,30 @@ public class TransactionsResolucaoTeste {
 
     @Test
     public void TesteCriaResolucao() throws ParseException {
-        String id = UUID.randomUUID().toString();
+        List<Regra> regras = new ArrayList<>();
+        String descricao = "descricao da regra";
+        float valorMaximo = 50;
+        float valorMinimo = 10;
+        String variavel = "variavelRegra";
+        String expressao = "expressaoRegra";
+        String entao = "então";
+        String senao = "senão";
+        String tipoRelato = "Tipo do relato";
+        int pontosPorItem = 1;
+        List<String> dependeDe = new ArrayList<>();
+        dependeDe.add("Dependencia da regra");
+        Regra novaRegra = new Regra(10, descricao, valorMaximo, valorMinimo, variavel, 
+                expressao, entao, senao, tipoRelato, valorMinimo, dependeDe);
+        regras.add(novaRegra);
+        
         boolean salvo = true;
         String data = "10-07-2016";
         SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
         Date date = dt.parse(data);
 
         try {
-            prev2.execute(new ResolucaoCreateTransaction(id, "500", "resolucao", 
-                    date, ConstrutorBusinessObjects.geraRegra()));
+            prev2.execute(new ResolucaoCreateTransaction("IdResolucao001", "500", "resolucao", 
+                    date, regras));
         } catch (Exception e1) {
             salvo = false;
         }
@@ -54,9 +71,9 @@ public class TransactionsResolucaoTeste {
 
     @Test
     public void TesteDeletaResolucao() {
-        String id = UUID.randomUUID().toString();
+        
         try {
-            prev2.execute(new ResolucaoDeleteTransaction(id));
+            prev2.execute(new ResolucaoDeleteTransaction("10"));
         } catch (Exception e1) {
         }
         assertFalse(ListaResolucao.listaResolucao.size() < 0);

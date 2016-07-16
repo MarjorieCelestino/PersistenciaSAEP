@@ -38,18 +38,21 @@ public class TransactionsTipoTeste {
     public void TesteCriaTipo() {
         boolean salvo = true;
         Set<Atributo> atributos = new HashSet<>();
-        atributos.add(new Atributo("NomeAtributo", "DescricaoAtributo", 10));
+        for (int i = 0; i < 3; i++) {
+            atributos.add(new Atributo(String.valueOf(i), "DescricaoAtributo", 1));
+        }
         try {
-            prev3.execute(new TipoCreateTransaction("idTipo01", "TipoNome01", "DescricaoTipo", atributos));
+            prev3.execute(new TipoCreateTransaction("idTipo02", "TipoNome01", "DescricaoTipo", atributos));
         } catch (Exception e1) {
             salvo = false;
         }
         assertTrue("Tipo não foi salvo", salvo);
     }
 
+    @Test
     public void TesteDeletaTipo() {
         try {
-            prev3.execute(new TipoDeleteTransaction("idTipo01"));
+            prev3.execute(new TipoDeleteTransaction("idTipo02"));
         } catch (Exception e1) {
         }
         assertFalse(ListaTipo.listaTipo.size() > 0);

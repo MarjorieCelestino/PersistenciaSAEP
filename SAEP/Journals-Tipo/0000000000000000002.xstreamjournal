@@ -1,0 +1,18 @@
+298;withQuery=false;systemVersion=2;executionTime=1468680333673
+<br.ufg.inf.es.saep.sandbox.persistencia.transaction.tipo.TipoCreateTransaction>
+  <id>idTipo01</id>
+  <nome>TipoNome01</nome>
+  <descricao>DescricaoTipo</descricao>
+  <atributos>
+    <br.ufg.inf.es.saep.sandbox.dominio.Atributo>
+      <nome>0</nome>
+      <tipo>1</tipo>
+      <descricao>Descrição do atributo</descricao>
+    </br.ufg.inf.es.saep.sandbox.dominio.Atributo>
+    <br.ufg.inf.es.saep.sandbox.dominio.Atributo>
+      <nome>1</nome>
+      <tipo>1</tipo>
+      <descricao>Descrição do atributo</descricao>
+    </br.ufg.inf.es.saep.sandbox.dominio.Atributo>
+  </atributos>
+</br.ufg.inf.es.saep.sandbox.persistencia.transaction.tipo.TipoCreateTransaction>

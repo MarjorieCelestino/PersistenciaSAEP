@@ -56,26 +56,4 @@ public class ConstrutorBusinessObjects {
         notasTeste.add(novaNota);
         return notasTeste;
     }
-
-    /**
-     * @return lista de regras
-     */
-    public static List<Regra> geraRegra() {
-        List<Regra> regras = new ArrayList<>();
-        int tipo = 5;
-        String descricao = "descricao da regra";
-        float valorMaximo = 50;
-        float valorMinimo = 10;
-        String variavel = "variavelRegra";
-        String expressao = "expressaoRegra";
-        String entao = "então";
-        String senao = "senão";
-        String tipoRelato = "Tipo do relato";
-        int pontosPorItem = 1;
-        List<String> dependeDe = new ArrayList<>();
-        dependeDe.add("Dependencia da regra");
-        Regra novaRegra = new Regra(tipo, descricao, valorMaximo, valorMinimo, variavel, expressao, entao, senao, tipoRelato, valorMinimo, dependeDe);
-        regras.add(novaRegra);
-        return regras;
-    }
 }

@@ -43,10 +43,9 @@ public class TransactionsParecerTeste {
 
     @Test
     public void TesteAdiconaParecer() {
-        String id = UUID.randomUUID().toString();
         boolean salvo = true;
         try {
-            prev.execute(new ParecerCreateTransaction(id, "IdResolucao20", ConstrutorBusinessObjects.geraRadocId(),
+            prev.execute(new ParecerCreateTransaction("50", "IdResolucao20", ConstrutorBusinessObjects.geraRadocId(),
                     ConstrutorBusinessObjects.geraPontuacao(), "Fundamentacao teste ", ConstrutorBusinessObjects.geraNotas("100")));
         } catch (Exception e1) {
             salvo = false;
@@ -66,7 +65,7 @@ public class TransactionsParecerTeste {
         Nota novaNota = new Nota(original, destino, "descrição da nota");
 
         try {
-            prev.execute(new ParecerChangeAddNotaTransaction("01", novaNota));
+            prev.execute(new ParecerChangeAddNotaTransaction("50", novaNota));
         } catch (Exception e1) {
             notaAlterada = false;
         }
@@ -77,7 +76,7 @@ public class TransactionsParecerTeste {
     public void TesteAlteraFundamentacao() {
         boolean fundamentacaoAlterada = true;
         try {
-            prev.execute(new ParecerChangeFundamentacaoTransaction("01", "FundamentacaoAlterada"));
+            prev.execute(new ParecerChangeFundamentacaoTransaction("50", "FundamentacaoAlterada"));
         } catch (Exception e1) {
             fundamentacaoAlterada = false;
         }
@@ -95,7 +94,7 @@ public class TransactionsParecerTeste {
         Relato relato = new Relato("TipoRelato02", valores);
         relatos.add(relato);
         try {
-            prev.execute(new RadocCreateTransaction("01", "RadocId25", 2016, relatos));
+            prev.execute(new RadocCreateTransaction("50", "RadocId25", 2016, relatos));
         } catch (Exception e1) {
             radocAdicionado = false;
         }
@@ -106,7 +105,7 @@ public class TransactionsParecerTeste {
     public void TesteDeletaRadoc() {
         boolean radocRemovido = true;
         try {
-            prev.execute(new RadocDeleteTransaction("01", "RadocId25"));
+            prev.execute(new RadocDeleteTransaction("50", "RadocId25"));
         } catch (Exception e1) {
             radocRemovido = false;
         }
@@ -116,9 +115,9 @@ public class TransactionsParecerTeste {
     @Test
     public void TesteDeletaParecer() {
         try {
-            prev.execute(new ParecerDeleteTransaction("01"));
+            prev.execute(new ParecerDeleteTransaction("50"));
         } catch (Exception e1) {
         }
-        assertFalse(ListaParecer.listaParecer.size() > 0);
+        assertFalse(ListaParecer.listaParecer.size() < 0);
     }
 }
