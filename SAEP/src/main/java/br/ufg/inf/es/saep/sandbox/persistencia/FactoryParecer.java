@@ -10,7 +10,7 @@ import org.prevayler.foundation.serialization.XStreamSerializer;
  */
 public class FactoryParecer {
 
-    public static Prevayler prevayler;
+    public static Prevayler prevaylerParecer;
 
     /**
      * Cria e configura factory para parecer. Configura serialização de journal
@@ -24,8 +24,8 @@ public class FactoryParecer {
         factory.configurePrevalentSystem(new ListaParecer());
         factory.configureJournalSerializer(new XStreamSerializer());
         factory.configureSnapshotSerializer(new XStreamSerializer());
-        prevayler = factory.create();
-        new SnapshotTimer(prevayler).start();
+        prevaylerParecer = factory.create();
+        new SnapshotTimer(prevaylerParecer).start();
     }
 
 }

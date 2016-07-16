@@ -1,5 +1,3 @@
-package br.ufg.inf.es.saep.sandbox.persistencia.teste;
-
 import br.ufg.inf.es.saep.sandbox.dominio.Avaliavel;
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
 import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
