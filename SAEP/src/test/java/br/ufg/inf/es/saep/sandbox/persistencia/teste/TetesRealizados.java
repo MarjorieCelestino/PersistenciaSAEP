@@ -53,8 +53,8 @@ public class TetesRealizados {
         Atributo a = new Atributo("a", "atributo", Atributo.REAL);
         Set<Atributo> atributos = new HashSet<>(1);
         atributos.add(a);
-        Tipo tipo = new Tipo("id", "t", "tipo", atributos);
-        FactoryTipo.prevayler3.execute(new TipoCreateTransaction("id", "t", "tipo", atributos));
+        Tipo tipo = new Tipo("id", "nomeTipo", "descricao", atributos);
+        FactoryTipo.prevayler3.execute(new TipoCreateTransaction("id", "nomeTipo", "descricao", atributos));
         Tipo recuperado = controlR.tipoPeloCodigo("id");
         assertEquals(tipo, recuperado);
     }
@@ -76,11 +76,14 @@ public class TetesRealizados {
     
     @Test
     public void persisteRecuperaParecer() {
-        Parecer novoParecer = new Parecer("50", "IdResolucao20", ConstrutorBusinessObjects.geraRadocId(),
-                    ConstrutorBusinessObjects.geraPontuacao(), "Fundamentacao teste ", ConstrutorBusinessObjects.geraNotas("100"));
+        List radocIds = ConstrutorBusinessObjects.geraRadocId();
+        List pontuacao = ConstrutorBusinessObjects.geraPontuacao();
+        List notas = ConstrutorBusinessObjects.geraNotas("100");
+        Parecer novoParecer = new Parecer("50", "IdResolucao20", radocIds,
+                    pontuacao, "Fundamentacao teste ", notas);
         try {
-            FactoryParecer.prevaylerParecer.execute(new ParecerCreateTransaction("50", "IdResolucao20", ConstrutorBusinessObjects.geraRadocId(),
-                    ConstrutorBusinessObjects.geraPontuacao(), "Fundamentacao teste ", ConstrutorBusinessObjects.geraNotas("100")));
+            FactoryParecer.prevaylerParecer.execute(new ParecerCreateTransaction("50", "IdResolucao20", radocIds,
+                    pontuacao, "Fundamentacao teste ", notas));
         } catch (Exception e1) {
         }
         Parecer parecerRecuperado = controlP.byId("50");
@@ -90,7 +93,6 @@ public class TetesRealizados {
     @Test
     public void alteraNota() {
         boolean notaAdicionada = false;
-        int tamanho = controlP.byId("50").getNotas().size();
         Valor valor = new Valor("50");
         Avaliavel original = new Pontuacao("50", valor);
         Valor valorBoole = new Valor(true);
@@ -103,7 +105,7 @@ public class TetesRealizados {
             FactoryParecer.prevaylerParecer.execute(new ParecerChangeAddNotaTransaction("50", novaNota));
         } catch (Exception e1) {
         }
-        if(tamanho < (controlP.byId("50").getNotas().size())){
+        if((controlP.byId("50").getNotas().size()) > 1){
         notaAdicionada = true;
         }
         
@@ -113,20 +115,19 @@ public class TetesRealizados {
     @Test
     public void persisteResolucao() throws ParseException {
         List<Regra> regras = new ArrayList<>();
-        String descricao = "descricao da regra";
-        float valorMaximo = 50;
-        float valorMinimo = 10;
-        String variavel = "variavelRegra";
-        String expressao = "expressaoRegra";
+        int tipo = 3;
+        String descricao = "descricao";
+        float valorMaximo = 10;
+        float valorMinimo = 0;
+        String variavel = "variavel";
+        String expressao = "expressao";
         String entao = "então";
         String senao = "senão";
-        String tipoRelato = "Tipo do relato";
+        String tipoRelato = "relatoTipo";
         int pontosPorItem = 1;
         List<String> dependeDe = new ArrayList<>();
-        dependeDe.add("Dependencia da regra");
-        Regra novaRegra = new Regra(10, descricao, valorMaximo, valorMinimo, variavel, 
-                expressao, entao, senao, tipoRelato, valorMinimo, dependeDe);
-        regras.add(novaRegra);
+        dependeDe.add("Dependencia");
+        regras.add(new Regra(tipo, descricao, valorMaximo, valorMinimo, variavel, expressao, entao, senao, tipoRelato, valorMinimo, dependeDe));
         
         boolean salvo = true;
         String data = "10-07-2016";

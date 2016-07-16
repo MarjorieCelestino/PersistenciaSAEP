@@ -13,6 +13,9 @@ public class ListaResolucao implements Serializable {
 
     private static final long serialVersionUID = 1l;
 
+    public ListaResolucao(){
+        
+    }
     public static List<Resolucao> listaResolucao = new ArrayList<Resolucao>();
 
     ControlaResolucao control;

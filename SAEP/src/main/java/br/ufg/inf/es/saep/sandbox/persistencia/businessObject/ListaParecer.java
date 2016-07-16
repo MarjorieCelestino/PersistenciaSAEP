@@ -18,6 +18,10 @@ public class ListaParecer implements Serializable {
 
     public static boolean pode = true;
     ControlaParecer control;
+    
+    public ListaParecer(){
+        
+    }
 
     public static List<Parecer> listaParecer = new ArrayList<Parecer>();
 

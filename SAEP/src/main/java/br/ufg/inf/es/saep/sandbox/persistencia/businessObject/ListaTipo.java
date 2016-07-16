@@ -12,7 +12,10 @@ import java.util.List;
 public class ListaTipo implements Serializable {
 
     private static final long serialVersionUID = 1l;
-
+    
+    public ListaTipo(){
+        
+    }
     /**
      * lista para armazenamento dos tipos
      */
