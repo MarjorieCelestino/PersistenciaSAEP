@@ -20,6 +20,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.prevayler.Prevayler;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 public class TransactionsParecerTeste {
@@ -46,8 +48,8 @@ public class TransactionsParecerTeste {
     public void TesteAdiconaParecer() {
         boolean salvo = true;
         try {
-            prev.execute(new ParecerCreateTransaction("01", "IdResolucao20", BusinessObjects.geraRadocId(),
-                    BusinessObjects.geraPontuacao(), "Fundamentacao teste ", BusinessObjects.geraNotas("100")));
+            prev.execute(new ParecerCreateTransaction("01", "IdResolucao20", ConstrutorBusinessObjects.geraRadocId(),
+                    ConstrutorBusinessObjects.geraPontuacao(), "Fundamentacao teste ", ConstrutorBusinessObjects.geraNotas("100")));
         } catch (Exception e1) {
             salvo = false;
         }

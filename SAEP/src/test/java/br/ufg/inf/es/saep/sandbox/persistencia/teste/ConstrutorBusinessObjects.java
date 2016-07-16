@@ -3,12 +3,10 @@ package br.ufg.inf.es.saep.sandbox.persistencia.teste;
 import br.ufg.inf.es.saep.sandbox.dominio.Atributo;
 import br.ufg.inf.es.saep.sandbox.dominio.Avaliavel;
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
-import br.ufg.inf.es.saep.sandbox.dominio.Parecer;
 import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
 import br.ufg.inf.es.saep.sandbox.dominio.Radoc;
 import br.ufg.inf.es.saep.sandbox.dominio.Regra;
 import br.ufg.inf.es.saep.sandbox.dominio.Relato;
-import br.ufg.inf.es.saep.sandbox.dominio.Resolucao;
 import br.ufg.inf.es.saep.sandbox.dominio.Tipo;
 import br.ufg.inf.es.saep.sandbox.dominio.Valor;
 import java.util.*;
@@ -16,7 +14,7 @@ import java.util.*;
 /**
  * Classe para criação dos business objects utilizados para teste
  */
-public class BusinessObjects {
+public class ConstrutorBusinessObjects {
 
     /**
      * @return lista de id de radocs
@@ -83,15 +81,6 @@ public class BusinessObjects {
         Regra novaRegra = new Regra(tipo, descricao, valorMaximo, valorMinimo, variavel, expressao, entao, senao, tipoRelato, valorMinimo, dependeDe);
         regras.add(novaRegra);
         return regras;
-    }
-
-    /**
-     * @param id
-     * @return resolucao
-     */
-    public static Resolucao criaResolucao(String id) {
-        Date date = new Date("10-04-2016");
-        return new Resolucao(id, "500", "resolucao", date, geraRegra());
     }
 
     /**
