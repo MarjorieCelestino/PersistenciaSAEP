@@ -50,7 +50,7 @@ public class TransactionsParecerTeste {
         } catch (Exception e1) {
             salvo = false;
         }
-        assertTrue("Parecer não foi salvo", salvo);
+         assertFalse(ListaParecer.listaParecer.size() < 0);
     }
 
     @Test
