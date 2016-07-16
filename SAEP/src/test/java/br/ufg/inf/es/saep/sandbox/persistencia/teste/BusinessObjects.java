@@ -62,15 +62,7 @@ public class BusinessObjects {
         return notasTeste;
     }
 
-    /**
-     * @param id
-     * @return parecer
-     */
-    public static Parecer CriaParecer(String id) {
-        Parecer parecerTeste = new Parecer(id, "IdResolucao20", geraRadocId(), geraPontuacao(), "Fundamentacao teste ", geraNotas("100"));
-        return parecerTeste;
-    }
-
+    
     /**
      * @return lista de regras
      */
