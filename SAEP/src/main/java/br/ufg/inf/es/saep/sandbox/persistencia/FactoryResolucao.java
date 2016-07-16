@@ -19,9 +19,8 @@ public class FactoryResolucao {
      * @throws Exception
      */
     public FactoryResolucao() throws Exception {
-        System.out.println("Iniciando Prevayler...");
         PrevaylerFactory factory = new PrevaylerFactory();
-        factory.configurePrevalenceDirectory("LogsResolucao");
+        factory.configurePrevalenceDirectory("Journals-Resolucao");
         factory.configurePrevalentSystem(new ListaResolucao());
         factory.configureJournalSerializer(new XStreamSerializer());
         factory.configureSnapshotSerializer(new XStreamSerializer());
