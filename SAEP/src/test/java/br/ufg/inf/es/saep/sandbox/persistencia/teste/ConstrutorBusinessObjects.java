@@ -1,13 +1,10 @@
 package br.ufg.inf.es.saep.sandbox.persistencia.teste;
 
-import br.ufg.inf.es.saep.sandbox.dominio.Atributo;
 import br.ufg.inf.es.saep.sandbox.dominio.Avaliavel;
 import br.ufg.inf.es.saep.sandbox.dominio.Nota;
 import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
-import br.ufg.inf.es.saep.sandbox.dominio.Radoc;
 import br.ufg.inf.es.saep.sandbox.dominio.Regra;
 import br.ufg.inf.es.saep.sandbox.dominio.Relato;
-import br.ufg.inf.es.saep.sandbox.dominio.Tipo;
 import br.ufg.inf.es.saep.sandbox.dominio.Valor;
 import java.util.*;
 
@@ -60,7 +57,6 @@ public class ConstrutorBusinessObjects {
         return notasTeste;
     }
 
-    
     /**
      * @return lista de regras
      */
@@ -81,34 +77,5 @@ public class ConstrutorBusinessObjects {
         Regra novaRegra = new Regra(tipo, descricao, valorMaximo, valorMinimo, variavel, expressao, entao, senao, tipoRelato, valorMinimo, dependeDe);
         regras.add(novaRegra);
         return regras;
-    }
-
-    /**
-     * @param id
-     * @return radoc
-     */
-    public static Radoc geraRadoc(String id) {
-        List<Relato> relatos = new ArrayList<>();
-        Map<String, Valor> valores = new HashMap<>();
-        String tipoValor = "TipoValor1";
-        Valor valor = new Valor(2);
-        valores.put(tipoValor, valor);
-        Relato relato = new Relato("TipoRelato01", valores);
-        relatos.add(relato);
-        Radoc novoRadoc = new Radoc(id, 2015, relatos);
-
-        return novoRadoc;
-    }
-
-    /**
-     * @param id
-     * @param nome
-     * @return tipo
-     */
-    public static Tipo geraTipo(String id, String nome) {
-        Set<Atributo> atributos = new HashSet<>();
-        atributos.add(new Atributo("NomeAtributo", "DescricaoAtributo", 10));
-        Tipo tipoTeste = new Tipo(id, nome, "DescricaoTipo", atributos);
-        return tipoTeste;
     }
 }

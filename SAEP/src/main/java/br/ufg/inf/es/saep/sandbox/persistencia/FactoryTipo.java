@@ -9,12 +9,12 @@ import org.prevayler.foundation.serialization.XStreamSerializer;
  * Classe utilizada para criação de uma nova factory
  */
 public class FactoryTipo {
-    
+
     public static Prevayler prevayler3;
 
     /**
-     * Cria e configura factory para tipo. Configura serialização de journal
-     * e snapshot para XML.
+     * Cria e configura factory para tipo. Configura serialização de journal e
+     * snapshot para XML.
      *
      * @throws Exception
      */

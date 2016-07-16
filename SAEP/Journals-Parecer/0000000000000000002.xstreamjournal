@@ -1,0 +1,20 @@
+29E;withQuery=false;systemVersion=2;executionTime=1468678608406
+<br.ufg.inf.es.saep.sandbox.persistencia.transaction.radoc.RadocCreateTransaction>
+  <idParecer>01</idParecer>
+  <id>RadocId25</id>
+  <anoBase>2016</anoBase>
+  <relatos>
+    <br.ufg.inf.es.saep.sandbox.dominio.Relato>
+      <tipo>TipoRelato02</tipo>
+      <valores>
+        <entry>
+          <string>TipoValor1</string>
+          <br.ufg.inf.es.saep.sandbox.dominio.Valor>
+            <real>2.0</real>
+            <logico>false</logico>
+          </br.ufg.inf.es.saep.sandbox.dominio.Valor>
+        </entry>
+      </valores>
+    </br.ufg.inf.es.saep.sandbox.dominio.Relato>
+  </relatos>
+</br.ufg.inf.es.saep.sandbox.persistencia.transaction.radoc.RadocCreateTransaction>

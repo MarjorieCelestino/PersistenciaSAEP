@@ -15,14 +15,11 @@ import br.ufg.inf.es.saep.sandbox.persistencia.transaction.radoc.RadocCreateTran
 import br.ufg.inf.es.saep.sandbox.persistencia.transaction.radoc.RadocDeleteTransaction;
 import java.util.*;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.prevayler.Prevayler;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 
 public class TransactionsParecerTeste {
 
@@ -46,9 +43,10 @@ public class TransactionsParecerTeste {
 
     @Test
     public void TesteAdiconaParecer() {
+        String id = UUID.randomUUID().toString();
         boolean salvo = true;
         try {
-            prev.execute(new ParecerCreateTransaction("01", "IdResolucao20", ConstrutorBusinessObjects.geraRadocId(),
+            prev.execute(new ParecerCreateTransaction(id, "IdResolucao20", ConstrutorBusinessObjects.geraRadocId(),
                     ConstrutorBusinessObjects.geraPontuacao(), "Fundamentacao teste ", ConstrutorBusinessObjects.geraNotas("100")));
         } catch (Exception e1) {
             salvo = false;
