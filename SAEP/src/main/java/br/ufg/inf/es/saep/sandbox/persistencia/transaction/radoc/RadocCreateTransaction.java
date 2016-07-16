@@ -22,7 +22,7 @@ public class RadocCreateTransaction implements Transaction {
     private final List<Relato> relatos;
 
     /**
-     * Rcee parâmetros necessários para realização da transaction.
+     * Recebe parâmetros necessários para realização da transaction.
      *
      * @param idParecer
      * @param id

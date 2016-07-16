@@ -53,6 +53,7 @@ public class ControlaParecer implements ParecerRepository {
         for (Iterator i = listaParecer().iterator(); i.hasNext();) {
             Parecer parecerAtual = (Parecer) i.next();
             if (parecerAtual.getId().equals(id)) {
+                parecerAtual.getNotas().remove(original);
             } else {
                 throw new IdentificadorDesconhecido("Nenhum parecer existente com este identificador.");
             }
@@ -117,7 +118,7 @@ public class ControlaParecer implements ParecerRepository {
         for (Iterator i = listaParecer().iterator(); i.hasNext();) {
             Parecer parecerAtual = (Parecer) i.next();
             if (parecerAtual.getId().equals(id)) {
-                i.remove();
+                listaParecer().remove(parecerAtual);
             }
         }
     }

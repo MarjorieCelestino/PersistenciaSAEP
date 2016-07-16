@@ -30,9 +30,7 @@ public class SnapshotTimer extends Thread {
                 Thread.sleep(1000 * 60 * 60);
                 prevayler.takeSnapshot();
                 System.out.println("Snapshot disparado as " + new java.util.Date() + "...");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             } catch (Exception ex) {
                 Logger.getLogger(SnapshotTimer.class.getName()).log(Level.SEVERE, null, ex);

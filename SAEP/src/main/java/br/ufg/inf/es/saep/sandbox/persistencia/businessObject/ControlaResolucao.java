@@ -1,13 +1,15 @@
 package br.ufg.inf.es.saep.sandbox.persistencia.businessObject;
 
 import br.ufg.inf.es.saep.sandbox.dominio.CampoExigidoNaoFornecido;
+import br.ufg.inf.es.saep.sandbox.dominio.IdentificadorExistente;
 import br.ufg.inf.es.saep.sandbox.dominio.Resolucao;
 import br.ufg.inf.es.saep.sandbox.dominio.ResolucaoRepository;
+import br.ufg.inf.es.saep.sandbox.dominio.ResolucaoUsaTipoException;
 import br.ufg.inf.es.saep.sandbox.dominio.Tipo;
 import java.util.*;
 
 /**
- * Obs.: Resolucao é um business object.
+ * Obs.: Resolucao e Tipo são business objects.
  */
 public class ControlaResolucao implements ResolucaoRepository {
 
@@ -19,13 +21,16 @@ public class ControlaResolucao implements ResolucaoRepository {
     }
 
     /**
+     * @return lista de tipo
+     */
+    public List<Tipo> listaTipo() {
+        return ListaTipo.listaTipo;
+    }
+
+    /**
      * @param id O identificador único da resolução a ser recuperada.
      *
-     * @return {@code Resolucao} identificada por {@code id}. O retorno
-     * {@code null} indica que não existe resolução com o identificador
-     * fornecido.
-     *
-     * @see #persiste(Resolucao)
+     * @return {@code Resolucao}
      */
     @Override
     public Resolucao byId(String id) {
@@ -45,14 +50,7 @@ public class ControlaResolucao implements ResolucaoRepository {
      *
      * @param resolucao A resolução a ser persistida.
      *
-     * @return O identificador único da resolução, conforme fornecido em
-     * propriedade do objeto fornecido. Observe que o método retorna
-     * {@code null} para indicar que a operação não foi realizada de forma
-     * satisfatória, possivelmente por já existir resolução com identificador
-     * semelhante.
-     *
-     * @see #byId(String)
-     * @see #remove(String)
+     * @return O identificador único da resolução
      */
     @Override
     public String persiste(Resolucao resolucao) {
@@ -83,7 +81,7 @@ public class ControlaResolucao implements ResolucaoRepository {
         for (Iterator i = listaResolucao().iterator(); i.hasNext();) {
             Resolucao resolucaoAtual = (Resolucao) i.next();
             if (resolucaoAtual.getId().equals(identificador)) {
-                i.remove();
+                listaResolucao().remove(resolucaoAtual);
                 return true;
             }
         }
@@ -114,47 +112,62 @@ public class ControlaResolucao implements ResolucaoRepository {
      */
     @Override
     public void persisteTipo(Tipo tipo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Iterator i = listaTipo().iterator(); i.hasNext();) {
+            Tipo tipoAtual = (Tipo) i.next();
+            if (tipo.getId().equals(tipoAtual.getId())) {
+                throw new IdentificadorExistente("Identificador já existe.");
+            } else {
+                listaTipo().add(tipo);
+            }
+        }
     }
 
     /**
-     * Remove o tipo.
-     *
-     *
-     * @param string
+     * @param codigo
      */
     @Override
-    public void removeTipo(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removeTipo(String codigo) {
+        for (Iterator i = listaTipo().iterator(); i.hasNext();) {
+            Tipo tipoAtual = (Tipo) i.next();
+            if (tipoAtual.getId().equals(codigo)) {
+                listaTipo().remove(tipoAtual);
+            } else {
+                throw new ResolucaoUsaTipoException("O tipo é empregado por pelo menos uma resolução.");
+            }
+        }
     }
 
     /**
-     * Recupera o tipo com o código fornecido.
      *
-     * @param string
-     *
-     * @return A instância de {@link Tipo} cujo código único é fornecido.
-     * Retorna {@code null} caso não exista tipo com o código indicado.
+     * @param codigo
+     * @return tipo com referente ao código fornecido
      */
     @Override
-    public Tipo tipoPeloCodigo(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Tipo tipoPeloCodigo(String codigo) {
+        for (Iterator i = listaTipo().iterator(); i.hasNext();) {
+            Tipo tipoAtual = (Tipo) i.next();
+            if (tipoAtual.getId().equals(codigo)) {
+                return tipoAtual;
+            }
+        }
+        return null;
     }
 
     /**
-     * Recupera a lista de tipos cujos nomes são similares àquele fornecido. Um
-     * nome é similar àquele do tipo caso contenha o argumento fornecido. Por
-     * exemplo, para o nome "casa" temos que "asa" é similar.
      *
-     * Um nome é dito similar se contém a sequência indicada.
-     *
-     * @param string
-     *
-     * @return A coleção de tipos cujos nomes satisfazem um padrão de semelhança
-     * com a sequência indicada.
+     * @param nome
+     * @return lista de tipos com o nome fornecido
      */
     @Override
-    public List<Tipo> tiposPeloNome(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Tipo> tiposPeloNome(String nome) {
+        List<Tipo> tipoByName = new ArrayList();
+        for (Iterator i = listaTipo().iterator(); i.hasNext();) {
+            Tipo tipoAtual = (Tipo) i.next();
+            if (tipoAtual.getNome().equals(nome)) {
+                tipoByName.add(tipoAtual);
+
+            }
+        }
+        return tipoByName;
     }
 }

@@ -19,9 +19,6 @@ public class ListaParecer implements Serializable {
     public static boolean pode = true;
     ControlaParecer control;
 
-    /**
-     * Cria lista para armazenamento dos pareceres
-     */
     public static List<Parecer> listaParecer = new ArrayList<Parecer>();
 
     /**
