@@ -6,7 +6,6 @@ import br.ufg.inf.es.saep.sandbox.dominio.Pontuacao;
 import br.ufg.inf.es.saep.sandbox.dominio.Relato;
 import br.ufg.inf.es.saep.sandbox.dominio.Valor;
 import br.ufg.inf.es.saep.sandbox.persistencia.FactoryParecer;
-import br.ufg.inf.es.saep.sandbox.persistencia.businessObject.ControlaParecer;
 import br.ufg.inf.es.saep.sandbox.persistencia.businessObject.ListaParecer;
 import br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer.ParecerChangeAddNotaTransaction;
 import br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer.ParecerChangeFundamentacaoTransaction;
@@ -14,10 +13,7 @@ import br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer.ParecerCreate
 import br.ufg.inf.es.saep.sandbox.persistencia.transaction.parecer.ParecerDeleteTransaction;
 import br.ufg.inf.es.saep.sandbox.persistencia.transaction.radoc.RadocCreateTransaction;
 import br.ufg.inf.es.saep.sandbox.persistencia.transaction.radoc.RadocDeleteTransaction;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -25,20 +21,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.prevayler.Prevayler;
 
-/**
- *
- * @author Marjorie
- */
+
 public class TransactionsParecerTeste {
 
     Prevayler prev;
 
     /**
-     *
-     * @param prev
      * @throws Exception
      */
-    public TransactionsParecerTeste(Prevayler prev) throws Exception {
+    public TransactionsParecerTeste() throws Exception {
         FactoryParecer novaFactory = new FactoryParecer();
         prev = novaFactory.prevayler;
     }
@@ -114,7 +105,6 @@ public class TransactionsParecerTeste {
     @Test
     public void TesteDeletaRadoc() {
         boolean radocRemovido = true;
-        ControlaParecer control;
         try {
             prev.execute(new RadocDeleteTransaction("01", "RadocId25"));
         } catch (Exception e1) {
